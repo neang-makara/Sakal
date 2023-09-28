@@ -10,13 +10,15 @@ use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Backend\SchoolsController;
 use App\Http\Controllers\Backend\TalentsController;
 use App\Http\Controllers\Backend\SubjectsController;
-use App\Http\Controllers\Frontend\AboutUsController;
+use App\Http\Controllers\Frontend\AboutUsController as FrontendAboutUsController;
 use App\Http\Controllers\Frontend\ColleagueController;
 use App\Http\Controllers\Frontend\InstituteController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Frontend\UniversityController;
 use App\Http\Controllers\Frontend\HistoryUserController;
 use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
+use App\Http\Controllers\SliderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,11 @@ use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController
 Route::get('/', function () {
     return redirect('/home');
 });
+
+// sliders
+Route::get('/home-slider', [PagesController::class, 'index']);
+
+
 Route::get('/home', [PagesController::class, 'index']);
 Route::get('/type/{type}', [PagesController::class, 'viewSchoolsByType'])->name('schools');
 Route::get('/school-detail/{school}', [PagesController::class, 'schoolDetail']);
@@ -145,6 +152,13 @@ Route::middleware(['auth'])->group(function () {
 
         });
         // End Talent
+        // sliders
+        Route::prefix('slider')->group(function () {
+        Route::get('/home/slider',[SliderController::class, 'HomeSlider'])->name('home.slider');
+        Route::get('/add/slider',[SliderController::class, 'AddSlider'])->name('add.slider');
+        Route::post('/store/slider',[SliderController::class, 'StoreSlider'])->name('store.slider');
+        });
+
     });
 });
 

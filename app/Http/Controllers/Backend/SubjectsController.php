@@ -35,11 +35,13 @@ class SubjectsController extends Controller {
     public function createSubject(Request $request) {
         $request->validate([
             'name' => ['required'],
+            'description' => ['required'],
             'department_id' => ['required', 'numeric']
         ]);
 
         $subject = new Subject();
         $subject->name = $request->name;
+        $subject->description = $request->description;
         $subject->department_id = $request->department_id;
         $subject->save();
 
@@ -59,10 +61,12 @@ class SubjectsController extends Controller {
     public function updateSubject(Request $request, Subject $subject) {
         $request->validate([
             'name' => ['required'],
+            'description' => ['required'],
             'department_id' => ['required', 'numeric']
         ]);
 
         $subject->name = $request->name;
+        $subject->description = $request->description;
         $subject->department_id = $request->department_id;
         $subject->save();
 
