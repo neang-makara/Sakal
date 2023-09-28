@@ -109,6 +109,24 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{ route('newsyouth-list') }}" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    News Youth
+                                </p>
+                            </a>
+                        </li>
+
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('book-list') }}" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Book
+                                </p>
+                            </a>
+                        </li> --}}
+
                          <li class="nav-item">
                             <a href="{{ route('home.slider') }}" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>

@@ -26,8 +26,9 @@
                 aria-label="Slide 4"></button>
 
         </div>
+        @foreach ($sliders as $key => $slider)
         <div class="carousel-inner">
-            @foreach ($sliders as $key => $slider)
+
             <div class="carousel-item">
                 <img src="{{ asset($slider->image) }}" class="d-block w-100 carousel-item {{ $key == 0 ? 'active' : '' }}"
                 style="
@@ -38,8 +39,9 @@
                 /* background-repeat: no-repeat; */
                 background-position: center;" />
             </div>
-                @endforeach
+
         </div>
+        @endforeach
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

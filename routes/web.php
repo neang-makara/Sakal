@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\TypesController;
 use App\Http\Controllers\Backend\SchoolsController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Backend\SubjectsController;
+use App\Http\Controllers\NewsYouthController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\SliderController;
 
@@ -110,6 +111,15 @@ Route::middleware(['auth'])->group(function () {
         });
         // End Department List
 
+
+
+        // sliders
+        Route::prefix('slider')->group(function () {
+        Route::get('/home/slider',[SliderController::class, 'HomeSlider'])->name('home.slider');
+        Route::get('/add/slider',[SliderController::class, 'AddSlider'])->name('add.slider');
+        Route::post('/store/slider',[SliderController::class, 'StoreSlider'])->name('store.slider');
+        });
+
         // Start Subject List
         Route::prefix('subjects')->group(function () {
             Route::get('/', [SubjectsController::class, 'index'])->name('subject-list');
@@ -122,11 +132,15 @@ Route::middleware(['auth'])->group(function () {
         });
         // End Subject List
 
-        // sliders
-        Route::prefix('slider')->group(function () {
-        Route::get('/home/slider',[SliderController::class, 'HomeSlider'])->name('home.slider');
-        Route::get('/add/slider',[SliderController::class, 'AddSlider'])->name('add.slider');
-        Route::post('/store/slider',[SliderController::class, 'StoreSlider'])->name('store.slider');
+         // Start newsyouth List
+         Route::prefix('newsyouth')->group(function () {
+            Route::get('/', [NewsYouthController::class, 'index'])->name('newsyouth-list');
+            Route::get('/detail/{subject}', [NewsYouthController::class, 'detail'])->name('newsyouth-detail');
+            Route::get('/create', [NewsYouthController::class, 'createNewsYouth'])->name('newsyouth-create-form');
+            Route::post('/create', [NewsYouthController::class, 'createNewsYouth'])->name('newsyouth-create');
+            Route::get('/update/{subject}', [NewsYouthController::class, 'updateSubjectForm'])->name('newsyouth-update-form');
+            Route::post('/update/{subject}', [NewsYouthController::class, 'updateSubject'])->name('newsyouth-update');
+            Route::delete('/delete', [NewsYouthController::class, 'delete'])->name('subject-delete');
         });
 
     });
