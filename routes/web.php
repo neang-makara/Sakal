@@ -1,20 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\PagesController;
-use App\Http\Controllers\Frontend\UniversityController;
-use App\Http\Controllers\Frontend\InstituteController;
-use App\Http\Controllers\Frontend\ColleagueController;
-use App\Http\Controllers\Frontend\AboutUsController;
-use App\Http\Controllers\Frontend\TestController;
-use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
 use App\Http\Controllers\Backend\AuthController;
-use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\TypesController;
+use App\Http\Controllers\Backend\UsersController;
+use App\Http\Controllers\Frontend\TestController;
+use App\Http\Controllers\Backend\SkillsController;
+use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Backend\SchoolsController;
-use App\Http\Controllers\Backend\DepartmentsController;
+use App\Http\Controllers\Backend\TalentsController;
 use App\Http\Controllers\Backend\SubjectsController;
-use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\Frontend\AboutUsController;
+use App\Http\Controllers\Frontend\ColleagueController;
+use App\Http\Controllers\Frontend\InstituteController;
+use App\Http\Controllers\Backend\DepartmentsController;
+use App\Http\Controllers\Frontend\UniversityController;
+use App\Http\Controllers\Frontend\HistoryUserController;
+use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +118,33 @@ Route::middleware(['auth'])->group(function () {
         });
         // End Subject List
 
+        // Start Skill
+        Route::prefix('skill')->group(function () {
+            Route::get('/', [SkillsController::class, 'index'])->name('skill.index');
+            Route::get('/create', [SkillsController::class, 'create'])->name('skill.create');
+            Route::post('/store', [SkillsController::class, 'store'])->name('skill.store');
+            Route::get('/edit/{id}', [SkillsController::class, 'edit'])->name('skill.edit');
+            Route::post('/update', [SkillsController::class, 'update'])->name('skill.update');
+            Route::get('/inactive/{id}', [SkillsController::class, 'inactive'])->name('skill.inactive');
+            Route::get('/active/{id}', [SkillsController::class, 'active'])->name('skill.active');
+            // skill assign
+            Route::post('/assign', [SkillsController::class, 'assign'])->name('skill.assign');
+
+        });
+        // End Skill
+
+        // Start Talent
+        Route::prefix('talent')->group(function () {
+            Route::get('/', [TalentsController::class, 'index'])->name('talent.index');
+            Route::get('/create', [TalentsController::class, 'create'])->name('talent.create');
+            Route::post('/store', [TalentsController::class, 'store'])->name('talent.store');
+            Route::get('/edit/{id}', [TalentsController::class, 'edit'])->name('talent.edit');
+            Route::post('/update', [TalentsController::class, 'update'])->name('talent.update');
+            Route::get('/inactive/{id}', [TalentsController::class, 'inactive'])->name('talent.inactive');
+            Route::get('/active/{id}', [TalentsController::class, 'active'])->name('talent.active');
+
+        });
+        // End Talent
     });
 });
 
@@ -131,3 +160,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/skillstest', [SkillsController::class,'insertSkill']);
     Route::get('/show', [SkillsController::class,'showData']);
+
+// Frontend
+
+Route::get('/show-request-form', [HistoryUserController::class,'showForm'])->name('frontend.showForm');
+Route::post('/store/talent', [HistoryUserController::class,'userSubmitTalent'])->name('frontend.submit.talent');

@@ -109,6 +109,24 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{ route('skill.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Skill
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('talent.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Talent
+                                </p>
+                            </a>
+                        </li>
+
                         {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>
@@ -160,6 +178,10 @@
                         @yield('action')
                     </div>
                 </div>
+                
+                <!-- Default box -->
+                @yield('content_talent')
+                
                 <!-- /.card -->
 
             </section>
