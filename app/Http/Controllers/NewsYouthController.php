@@ -16,7 +16,7 @@ class NewsYouthController extends Controller
         $data = [
             'newsyouth' => $newsYouth
         ];
-        return view('backend.newsyouth.list', $data);
+        return view('backend.newsyouth.create', $data);
     }
 
     public function createNewsYouthForm(){

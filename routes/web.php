@@ -75,6 +75,55 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/detail/{user}', [UsersController::class, 'detail'])->name('user-detail');
         });
         // End Check Admin
+
+         // Start Type List
+         Route::prefix('types')->group(function () {
+            Route::get('/', [TypesController::class, 'index'])->name('type-list');
+            Route::get('/detail/{type}', [TypesController::class, 'detail'])->name('type-detail');
+            Route::get('/create', [TypesController::class, 'createTypeForm'])->name('type-create-form');
+            Route::post('/create', [TypesController::class, 'createType'])->name('type-create');
+            Route::get('/update/{type}', [TypesController::class, 'updateTypeForm'])->name('type-update-form');
+            Route::post('/update/{type}', [TypesController::class, 'updateType'])->name('type-update');
+            Route::delete('/delete', [TypesController::class, 'delete'])->name('type-delete');
+        });
+        // End Type List
+
+        // Start School List
+        Route::prefix('schools')->group(function () {
+            Route::get('/', [SchoolsController::class, 'index'])->name('school-list');
+            Route::get('/detail/{school}', [SchoolsController::class, 'detail'])->name('school-detail');
+            Route::get('/create', [SchoolsController::class, 'createSchoolForm'])->name('school-create-form');
+            Route::post('/create', [SchoolsController::class, 'createSchool'])->name('school-create');
+            Route::get('/update/{school}', [SchoolsController::class, 'updateSchoolForm'])->name('school-update-form');
+            Route::post('/update/{school}', [SchoolsController::class, 'updateSchool'])->name('school-update');
+            Route::delete('/delete', [SchoolsController::class, 'delete'])->name('school-delete');
+        });
+        // End School List
+
+         // Start Department List
+         Route::prefix('departments')->group(function () {
+            Route::get('/', [DepartmentsController::class, 'index'])->name('department-list');
+            Route::get('/detail/{department}', [DepartmentsController::class, 'detail'])->name('department-detail');
+            Route::get('/create', [DepartmentsController::class, 'createDepartmentForm'])->name('department-create-form');
+            Route::post('/create', [DepartmentsController::class, 'createDepartment'])->name('department-create');
+            Route::get('/update/{department}', [DepartmentsController::class, 'updateDepartmentForm'])->name('department-update-form');
+            Route::post('/update/{department}', [DepartmentsController::class, 'updateDepartment'])->name('department-update');
+            Route::delete('/delete', [DepartmentsController::class, 'delete'])->name('department-delete');
+        });
+        // End Department List
+
+         // Start Subject List
+         Route::prefix('subjects')->group(function () {
+            Route::get('/', [SubjectsController::class, 'index'])->name('subject-list');
+            Route::get('/detail/{subject}', [SubjectsController::class, 'detail'])->name('subject-detail');
+            Route::get('/create', [SubjectsController::class, 'createSubjectForm'])->name('subject-create-form');
+            Route::post('/create', [SubjectsController::class, 'createSubject'])->name('subject-create');
+            Route::get('/update/{subject}', [SubjectsController::class, 'updateSubjectForm'])->name('subject-update-form');
+            Route::post('/update/{subject}', [SubjectsController::class, 'updateSubject'])->name('subject-update');
+            Route::delete('/delete', [SubjectsController::class, 'delete'])->name('subject-delete');
+        });
+        // End Subject List
+
 // Start Skill
 Route::prefix('skill')->group(function () {
     Route::get('/', [SkillsController::class, 'index'])->name('skill.index');
@@ -102,6 +151,8 @@ Route::prefix('talent')->group(function () {
 
 });
 // End Talent
+
+
 // sliders
 Route::prefix('slider')->group(function () {
 Route::get('/home/slider',[SliderController::class, 'HomeSlider'])->name('home.slider');
@@ -120,6 +171,7 @@ Route::prefix('newsyouth')->group(function () {
     Route::post('/update/{subject}', [NewsYouthController::class, 'updateSubject'])->name('newsyouth-update');
     Route::delete('/delete', [NewsYouthController::class, 'delete'])->name('subject-delete');
  });
+ // End newsyouth
 
 
 

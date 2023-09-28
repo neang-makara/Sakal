@@ -114,6 +114,10 @@
                                 <i class="nav-icon fas fa-circle"></i>
                                 <p>
                                     News Youth
+                                </p>
+                            </a>
+                        </li>
+
 
                         <li class="nav-item">
                             <a href="{{ route('skill.index') }}" class="nav-link">
@@ -153,14 +157,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>
                                 <p>
                                     General
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link">

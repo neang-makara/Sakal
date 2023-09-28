@@ -32,7 +32,7 @@
                     <td>
                         {{ $newsyouths->title }}
                     </td>
-                    <td>{{ $newsyouths->newsyouth->title }}</td>
+                    {{-- <td>{{ $newsyouths->newsyouth->title }}</td> --}}
                     <td>
                         <a href="{{ route('newsyouths-detail', $newsyouths) }}" class="btn btn-warning btn-xs" title="Detail"><i class="fa fa-eye"></i></a>
                         <a href="{{ route('newsyouths-update-form', $newsyouths) }}" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pen"></i></a>
