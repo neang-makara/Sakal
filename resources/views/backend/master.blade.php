@@ -109,11 +109,11 @@
                             </a>
                         </li>
 
-                        {{-- <li class="nav-item">
-                            <a href="#" class="nav-link">
+                         <li class="nav-item">
+                            <a href="{{ route('home.slider') }}" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>
                                 <p>
-                                    Slides
+                                    Slider
                                 </p>
                             </a>
                         </li>
@@ -125,7 +125,7 @@
                                     General
                                 </p>
                             </a>
-                        </li> --}}
+                        </li>
 
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link">

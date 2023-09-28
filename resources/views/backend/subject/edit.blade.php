@@ -42,9 +42,16 @@
                             <option value="{{ $department->id }}" {{ $subject->department->id == $department->id ? 'selected' : '' }}>
                                 {{ $department->school->name . ' / ' . $department->name }}
                             </option>
+
                             @endif
                         @endforeach
                     </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="note">Description</label>
+                    <textarea cols='60' rows='8' class="form-control" name="description" id="description" rows="1">{{ old('description') != null ? old('description') : $subject->description }}</textarea>
                 </div>
             </div>
         </div>

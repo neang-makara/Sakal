@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SchoolsController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Backend\SubjectsController;
 use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,11 @@ use App\Http\Controllers\SkillsController;
 Route::get('/', function () {
     return redirect('/home');
 });
+
+// sliders
+Route::get('/home-slider', [PagesController::class, 'index']);
+
+
 Route::get('/home', [PagesController::class, 'index']);
 Route::get('/type/{type}', [PagesController::class, 'viewSchoolsByType'])->name('schools');
 Route::get('/school-detail/{school}', [PagesController::class, 'schoolDetail']);
@@ -115,6 +121,13 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/delete', [SubjectsController::class, 'delete'])->name('subject-delete');
         });
         // End Subject List
+
+        // sliders
+        Route::prefix('slider')->group(function () {
+        Route::get('/home/slider',[SliderController::class, 'HomeSlider'])->name('home.slider');
+        Route::get('/add/slider',[SliderController::class, 'AddSlider'])->name('add.slider');
+        Route::post('/store/slider',[SliderController::class, 'StoreSlider'])->name('store.slider');
+        });
 
     });
 });

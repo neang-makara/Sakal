@@ -11,7 +11,8 @@ class Subject extends Model {
 
     protected $fillable = [
         'name',
-        'department_id'
+        'description',
+        'department_id',
     ];
 
     public function department() {

@@ -25,16 +25,32 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-8">
-            <h4 class="mt-4">មុខវិជ្ជា</h4>
+        {{-- start subject list --}}
+        <div class="col-8" style="padding-top: 30px;">
+            {{-- <h4 class="mt-4">មុខវិជ្ជា</h4> --}}
             @if ($school->departments()->find($selectedDepartmentId) != null)
-                <ul class="list-group list-group-flush">
-                    @foreach ($school->departments()->find($selectedDepartmentId)->subjects as $subject)
-                        <li class="list-group-item">{{ $subject->name }}</li>
-                    @endforeach
-                </ul>
+                @foreach ($school->departments()->find($selectedDepartmentId)->subjects as $subject)
+                    <div class="card mb-4" style="width:840px;" style="padding-top: 20px; ">
+                        <div class="row g-0">
+                            <div
+                                style="text-align:center;  margin-bottom:10px;padding-top: 10px;  background: #2d86ea; width:840px; height:40px; color:aliceblue; font-family: 'Koulen'; ">
+                                {{ $subject->name  }} </div>
+                                <div class="card-body list-group-item list-group-item-action" >
+                                    <p
+                                        style="  text-align: center;  font-size: 18px;">
+                                        {{ $subject->description  }}
+                                    </p>
+
+                                </div>
+                        </div>
+                    </div>
+
+                    {{-- {{ $subject->name . ' - ' }} --}}
+                @endforeach
+
                 @if ($school->departments()->find($selectedDepartmentId)->subjects->count() == 0)
                     <p class="text-center text-muted text-xs mt-4"><i>
+                            {{-- end subject list --}}
                             {{-- <div style="max-width:100%;list-style:none; transition: none;overflow:hidden;width:500px;height:500px;"><div id="my-map-canvas" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=RUPP+IT+Building+B,+Street+608,+PP,+Cambodia&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe></div><a class="the-googlemap-enabler" rel="nofollow" href="https://www.bootstrapskins.com/themes" id="auth-map-data">premium bootstrap themes</a><style>#my-map-canvas img{max-width:none!important;background:none!important;font-size: inherit;font-weight:inherit;}</style></div></i></p> --}}
 
                             {{-- Start slide show --}}
@@ -83,8 +99,8 @@
                                     </div>
 
                                     <div class="carousel-item">
-                                        <img src="{{ url('/images/University/4.Doctor_Slide.png') }}" class="d-block w-100"
-                                            alt="...">
+                                        <img src="{{ url('/images/University/4.Doctor_Slide.png') }}"
+                                            class="d-block w-100" alt="...">
 
                                     </div>
 
@@ -200,108 +216,6 @@
     </div>
 
 
-    <div class="card" style="width: 1250px; height: 100%; margin: auto;">
-        <div
-            style="text-align:left;  margin-bottom:10px;padding-top: 10px;  background: #2d86ea; width:100%; height:40px; color:aliceblue; font-family: 'Koulen'; ">
-            <p style="margin-left: 20px;">ព័ត៌មានទាក់ទងថ្មីៗ</p> </div>
-
-        <div class="row row-cols-1 row-cols-md-5">
-            <div class="col" style="padding: 20px 30px; ">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col" style="padding: 20px 30px;">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col" style="padding: 20px 30px;">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col" style="padding: 20px 30px;">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col" style="padding: 20px 30px;">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col" style="padding: 20px 30px;">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col" style="padding: 20px 30px;">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col" style="padding: 20px 30px;">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col" style="padding: 20px 30px;">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col" style="padding: 20px 30px;">
-                <div class="card h-50">
-                    <img src="../images/News/nyd.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">សាកលវិទ្យាល័យ</h5>
-                        <p class="card-text">សាកលវិទ្យាល័យ ន័រតុន</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 

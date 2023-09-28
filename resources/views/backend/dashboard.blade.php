@@ -3,6 +3,10 @@
 @section('title', 'DASHBOARD')
 
 @section('content')
+
+{{-- @php
+    dd(Auth::user());
+@endphp --}}
     <body>
         <div >
 
