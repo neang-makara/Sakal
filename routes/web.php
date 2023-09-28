@@ -1,22 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\PagesController;
-use App\Http\Controllers\Frontend\UniversityController;
-use App\Http\Controllers\Frontend\InstituteController;
-use App\Http\Controllers\Frontend\ColleagueController;
-use App\Http\Controllers\Frontend\AboutUsController;
-use App\Http\Controllers\Frontend\TestController;
-use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
 use App\Http\Controllers\Backend\AuthController;
-use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\TypesController;
+use App\Http\Controllers\Backend\UsersController;
+use App\Http\Controllers\Frontend\TestController;
+use App\Http\Controllers\Backend\SkillsController;
+use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Backend\SchoolsController;
-use App\Http\Controllers\Backend\DepartmentsController;
+use App\Http\Controllers\Backend\TalentsController;
 use App\Http\Controllers\Backend\SubjectsController;
-use App\Http\Controllers\NewsYouthController;
-use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\Frontend\AboutUsController as FrontendAboutUsController;
+use App\Http\Controllers\Frontend\ColleagueController;
+use App\Http\Controllers\Frontend\InstituteController;
+use App\Http\Controllers\Backend\DepartmentsController;
+use App\Http\Controllers\Frontend\UniversityController;
+use App\Http\Controllers\Frontend\HistoryUserController;
+use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\NewsYouthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,77 +75,59 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/detail/{user}', [UsersController::class, 'detail'])->name('user-detail');
         });
         // End Check Admin
+// Start Skill
+Route::prefix('skill')->group(function () {
+    Route::get('/', [SkillsController::class, 'index'])->name('skill.index');
+    Route::get('/create', [SkillsController::class, 'create'])->name('skill.create');
+    Route::post('/store', [SkillsController::class, 'store'])->name('skill.store');
+    Route::get('/edit/{id}', [SkillsController::class, 'edit'])->name('skill.edit');
+    Route::post('/update', [SkillsController::class, 'update'])->name('skill.update');
+    Route::get('/inactive/{id}', [SkillsController::class, 'inactive'])->name('skill.inactive');
+    Route::get('/active/{id}', [SkillsController::class, 'active'])->name('skill.active');
+    // skill assign
+    Route::post('/assign', [SkillsController::class, 'assign'])->name('skill.assign');
+
+});
+// End Skill
+
+// Start Talent
+Route::prefix('talent')->group(function () {
+    Route::get('/', [TalentsController::class, 'index'])->name('talent.index');
+    Route::get('/create', [TalentsController::class, 'create'])->name('talent.create');
+    Route::post('/store', [TalentsController::class, 'store'])->name('talent.store');
+    Route::get('/edit/{id}', [TalentsController::class, 'edit'])->name('talent.edit');
+    Route::post('/update', [TalentsController::class, 'update'])->name('talent.update');
+    Route::get('/inactive/{id}', [TalentsController::class, 'inactive'])->name('talent.inactive');
+    Route::get('/active/{id}', [TalentsController::class, 'active'])->name('talent.active');
+
+});
+// End Talent
+// sliders
+Route::prefix('slider')->group(function () {
+Route::get('/home/slider',[SliderController::class, 'HomeSlider'])->name('home.slider');
+Route::get('/add/slider',[SliderController::class, 'AddSlider'])->name('add.slider');
+Route::post('/store/slider',[SliderController::class, 'StoreSlider'])->name('store.slider');
+});
 
 
-        // Start Type List
-        Route::prefix('types')->group(function () {
-            Route::get('/', [TypesController::class, 'index'])->name('type-list');
-            Route::get('/detail/{type}', [TypesController::class, 'detail'])->name('type-detail');
-            Route::get('/create', [TypesController::class, 'createTypeForm'])->name('type-create-form');
-            Route::post('/create', [TypesController::class, 'createType'])->name('type-create');
-            Route::get('/update/{type}', [TypesController::class, 'updateTypeForm'])->name('type-update-form');
-            Route::post('/update/{type}', [TypesController::class, 'updateType'])->name('type-update');
-            Route::delete('/delete', [TypesController::class, 'delete'])->name('type-delete');
-        });
-        // End Type List
-
-        // Start School List
-        Route::prefix('schools')->group(function () {
-            Route::get('/', [SchoolsController::class, 'index'])->name('school-list');
-            Route::get('/detail/{school}', [SchoolsController::class, 'detail'])->name('school-detail');
-            Route::get('/create', [SchoolsController::class, 'createSchoolForm'])->name('school-create-form');
-            Route::post('/create', [SchoolsController::class, 'createSchool'])->name('school-create');
-            Route::get('/update/{school}', [SchoolsController::class, 'updateSchoolForm'])->name('school-update-form');
-            Route::post('/update/{school}', [SchoolsController::class, 'updateSchool'])->name('school-update');
-            Route::delete('/delete', [SchoolsController::class, 'delete'])->name('school-delete');
-        });
-        // End School List
-
-        // Start Department List
-        Route::prefix('departments')->group(function () {
-            Route::get('/', [DepartmentsController::class, 'index'])->name('department-list');
-            Route::get('/detail/{department}', [DepartmentsController::class, 'detail'])->name('department-detail');
-            Route::get('/create', [DepartmentsController::class, 'createDepartmentForm'])->name('department-create-form');
-            Route::post('/create', [DepartmentsController::class, 'createDepartment'])->name('department-create');
-            Route::get('/update/{department}', [DepartmentsController::class, 'updateDepartmentForm'])->name('department-update-form');
-            Route::post('/update/{department}', [DepartmentsController::class, 'updateDepartment'])->name('department-update');
-            Route::delete('/delete', [DepartmentsController::class, 'delete'])->name('department-delete');
-        });
-        // End Department List
+// Start newsyouth List
+Route::prefix('newsyouth')->group(function () {
+    Route::get('/', [NewsYouthController::class, 'index'])->name('newsyouth-list');
+    Route::get('/detail/{subject}', [NewsYouthController::class, 'detail'])->name('newsyouth-detail');
+    Route::get('/create', [NewsYouthController::class, 'createNewsYouth'])->name('newsyouth-create-form');
+    Route::post('/create', [NewsYouthController::class, 'createNewsYouth'])->name('newsyouth-create');
+    Route::get('/update/{subject}', [NewsYouthController::class, 'updateSubjectForm'])->name('newsyouth-update-form');
+    Route::post('/update/{subject}', [NewsYouthController::class, 'updateSubject'])->name('newsyouth-update');
+    Route::delete('/delete', [NewsYouthController::class, 'delete'])->name('subject-delete');
+ });
 
 
 
-        // sliders
-        Route::prefix('slider')->group(function () {
-        Route::get('/home/slider',[SliderController::class, 'HomeSlider'])->name('home.slider');
-        Route::get('/add/slider',[SliderController::class, 'AddSlider'])->name('add.slider');
-        Route::post('/store/slider',[SliderController::class, 'StoreSlider'])->name('store.slider');
-        });
 
-        // Start Subject List
-        Route::prefix('subjects')->group(function () {
-            Route::get('/', [SubjectsController::class, 'index'])->name('subject-list');
-            Route::get('/detail/{subject}', [SubjectsController::class, 'detail'])->name('subject-detail');
-            Route::get('/create', [SubjectsController::class, 'createSubjectForm'])->name('subject-create-form');
-            Route::post('/create', [SubjectsController::class, 'createSubject'])->name('subject-create');
-            Route::get('/update/{subject}', [SubjectsController::class, 'updateSubjectForm'])->name('subject-update-form');
-            Route::post('/update/{subject}', [SubjectsController::class, 'updateSubject'])->name('subject-update');
-            Route::delete('/delete', [SubjectsController::class, 'delete'])->name('subject-delete');
-        });
-        // End Subject List
+});
 
-         // Start newsyouth List
-         Route::prefix('newsyouth')->group(function () {
-            Route::get('/', [NewsYouthController::class, 'index'])->name('newsyouth-list');
-            Route::get('/detail/{subject}', [NewsYouthController::class, 'detail'])->name('newsyouth-detail');
-            Route::get('/create', [NewsYouthController::class, 'createNewsYouth'])->name('newsyouth-create-form');
-            Route::post('/create', [NewsYouthController::class, 'createNewsYouth'])->name('newsyouth-create');
-            Route::get('/update/{subject}', [NewsYouthController::class, 'updateSubjectForm'])->name('newsyouth-update-form');
-            Route::post('/update/{subject}', [NewsYouthController::class, 'updateSubject'])->name('newsyouth-update');
-            Route::delete('/delete', [NewsYouthController::class, 'delete'])->name('subject-delete');
-        });
 
-    });
+
 });
 
 // End Login Page
@@ -151,10 +135,15 @@ Route::middleware(['auth'])->group(function () {
 
 // Start check box skills
 
-    Route::get('/skillstest',function(){
-        return view('frontend.skillstest');
+Route::get('/skillstest',function(){
+return view('frontend.skillstest');
 
-    });
+});
 
-    Route::post('/skillstest', [SkillsController::class,'insertSkill']);
-    Route::get('/show', [SkillsController::class,'showData']);
+Route::post('/skillstest', [SkillsController::class,'insertSkill']);
+Route::get('/show', [SkillsController::class,'showData']);
+
+// Frontend
+
+Route::get('/show-request-form', [HistoryUserController::class,'showForm'])->name('frontend.showForm');
+Route::post('/store/talent', [HistoryUserController::class,'userSubmitTalent'])->name('frontend.submit.talent');

@@ -114,6 +114,12 @@
                                 <i class="nav-icon fas fa-circle"></i>
                                 <p>
                                     News Youth
+
+                        <li class="nav-item">
+                            <a href="{{ route('skill.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Skill
                                 </p>
                             </a>
                         </li>
@@ -128,7 +134,18 @@
                         </li> --}}
 
                          <li class="nav-item">
+                        <li class="nav-item">
+                            <a href="{{ route('talent.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Talent
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a href="{{ route('home.slider') }}" class="nav-link">
+
                                 <i class="nav-icon fas fa-circle"></i>
                                 <p>
                                     Slider
@@ -178,6 +195,10 @@
                         @yield('action')
                     </div>
                 </div>
+
+                <!-- Default box -->
+                @yield('content_talent')
+
                 <!-- /.card -->
 
             </section>
