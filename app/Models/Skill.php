@@ -16,8 +16,7 @@ class Skill extends Model
     public function createdBy(){
         return $this->belongsTo(User::class, "created_by", "id");
     } 
-    public function talent()
-    {
-        return $this->belongsTo(Talent::class, "talent_id", "id");
-    } 
+    public function talent() {
+        return $this->hasMany(\App\Models\Talent::class, 'id', 'talent_id');
+    }
 }

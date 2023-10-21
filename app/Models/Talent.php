@@ -13,16 +13,16 @@ class Talent extends Model
 
     protected $guarded =[];
 
-    public function skill() {
-        return $this->belongsTo(Skill::class, 'skill_id', 'id');
-    }
+    // public function skill() {
+    //     return $this->belongsTo(Skill::class, 'skill_id', 'id');
+    // }
 
     public function createdBy(){
         return $this->belongsTo(User::class, "created_by", "id");
     }
     
-    // public function talent_id()
-    // {
-    //     return $this->belongsTo(Talent::class, "talent_id", "id");
-    // }
+   public function skill() {
+    return $this->belongsTo(Skill::class,'talent_id', 'id');
 }
+}
+

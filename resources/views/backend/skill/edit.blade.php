@@ -65,10 +65,10 @@
             <div class="col-4">
                 <div class="icheck-primary">
                     <label>
-                        <input type="checkbox" name="talents[]" value="{{ @$talent->name }}"
+                        <input type="checkbox" name="talent_id[]" value="{{ @$talent->id }}"
                         
                         @foreach (@$relative_talents as $relative)
-                            @if(@$relative->name == @$talent->name)
+                            @if(@$relative->id == @$talent->id)
                                  checked
                             @endif
                         @endforeach

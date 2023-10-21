@@ -11,8 +11,8 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Created By</th>
                 <th>Assign Talents</th>
+                <th>Created By</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>

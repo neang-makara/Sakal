@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use DB;
 use Carbon\Carbon;
 use App\Models\Skill;
 use App\Models\Talent;
@@ -12,8 +13,18 @@ class SkillsController extends Controller
 {
     public function index(){
         // $data['skills'] = Skill::get()->sortBy('name')->sortBy('name');
-        $skills = Skill::get()->sortBy('name')->sortBy('name');
-    
+       $skills = Skill::with('talent')->get()->sortBy('name');
+        // foreach($skills->talents as $item){
+            dd($skills);
+        // }
+//         foreach($skills->talents as $items){
+// dd($items);
+//         }
+
+$skills = collect($skills['talents'])->map(function ($voucher) {
+    return (object) $voucher;
+});
+dd($skills);
         $data['skills'] = $skills;
         return view('backend.skill.index', $data);
     }
@@ -30,7 +41,7 @@ class SkillsController extends Controller
 
         $subject = new Skill();
         $subject->name = @$request->name;
-        $subject->talents = "[]";
+        $subject->talent_id = "[]";
         $subject->created_by = auth()->id();
         $subject->save();
 
@@ -40,11 +51,11 @@ class SkillsController extends Controller
     public function edit($id){
         $skill = Skill::findOrFail($id);       
         // Get related convert to array
-        $relative         = json_decode($skill->talents);
+        $relative_id         = json_decode($skill->talent_id);
         // Get Value
-        $data['relative_talents'] = @Talent::whereIn("name", @$relative)->get();
+        $data['relative_talents'] = @Talent::whereIn("id", @$relative_id)->get();
         $data['skill'] = $skill;
-
+// dd($data);
         $data['talents'] = @Talent::where('status',1)->get();
 
         return view('backend.skill.edit', $data);

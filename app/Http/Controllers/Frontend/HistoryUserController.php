@@ -30,12 +30,33 @@ class HistoryUserController extends Controller
             'data_obj->name' => @$request->name,
             'data_obj->gender' => @$request->gender,
             'data_obj->phone' => @$request->phone,
-            'created_by'     => auth()->user()->id,
+            // 'created_by'     => auth()->user()->id,
         ];
 
         $subject = new HistoryUser($data);
-        $subject->save(); 
-        return redirect()->back()->with('success', 'Success: Your skill be'.$request->name); 
+       // $subject->save(); 
+       $models = Skill::select('talents')->get();
+       $collection = array_values($talentArray);
+
+       $model_values = [];
+        foreach($models as $model){
+            $model_values = array_merge($model_values, $collection);
+        }
+        foreach($collection as $id){
+            if(in_array($id, $model_values)){
+                //returns true if the $idToCheck exist
+                $arrayNewSearch = Skill::select('*')->WhereJsonContains('talents',$id)->limit(3)->get();
+            }
+            else{
+                //returns false
+            }
+        }
+        // dd($collection);
+        $data['arrayNewSearch'] = @$arrayNewSearch;
+        $data['collection'] = @$collection;
+        $data['talents'] = Talent::where('status',1)->get()->sortBy('name')->sortBy('name');
+
+        return view('frontend.request_skill',$data); 
 
         // return redirect()->route('talent.index')->with('success', 'Create success!'); 
     }

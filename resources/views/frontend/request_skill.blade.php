@@ -46,7 +46,46 @@
         <form action="{{ route('frontend.submit.talent') }}" method="POST">
             @csrf
         <div class="row" style="margin-top: 30px;">
-            @include('frontend.message.message')
+            {{-- @include('frontend.message.message') --}}
+            @if(@$arrayNewSearch != null)
+           <div class="col-md-12">
+            <div class="alert alert-info">
+                <strong class="font-modul">មុខជំនាញដែលសាកសមនឹងអ្នករួមមាន៖</strong>
+                <ul>
+                    @foreach(@$arrayNewSearch as $item)
+                        <li>{{ @$item->name }}</li>
+                    @endforeach
+                </ul>
+               
+            </div>
+           </div>
+           @endif
+           @if(@$collection != null)
+            <div class="col-md-6">
+                <div class="card card-outline card-success">
+                  <div class="card-header">
+                    <h5 class="card-title">អ្នកបានជ្រើសររើសទេពកោសល្យ និងចំណង់ចំណូលចិត្តដូចខាងក្រោមនេះ៖</h3>
+    
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                    <!-- /.card-tools -->
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <ul>
+                        @foreach(@$collection as $name)
+                            <li>{{ @$name }}</li>
+                        @endforeach
+                    </ul>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+            @endif
+
             {{-- form 1 --}}
             <div class="col-md-12">
                 <!-- general form elements -->
