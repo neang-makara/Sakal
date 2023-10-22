@@ -67,16 +67,18 @@ class SchoolsController extends Controller
             'longitude' => ['required', 'numeric'],
             'logo' => ['mimes:jpeg,jpg,png', 'max:1024']
         ]);
-
         $school->name = $request->name;
         $school->type_id = $request->type_id;
         $school->latitude = $request->latitude;
         $school->longitude = $request->longitude;
 
         if ($request->hasFile('logo')) {
+
             // replace old image with oldName
-            $oldName = explode('logo/', $school->logo)[1];
-            $school->logo = Storage::disk('public')->putFileAs('logo', $request->logo, $oldName);
+            $name = $request->logo->getClientOriginalName();
+            $folderPath = 'logo/'.$name;
+            Storage::disk('public')->putFileAs('logo',$request->logo, $name);
+            $school->logo = $folderPath;
         }
 
         $school->note = $request->note ? $request->note : '';
