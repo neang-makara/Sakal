@@ -15,7 +15,7 @@ class SkillsController extends Controller
         // $data['skills'] = Skill::get()->sortBy('name')->sortBy('name');
        $skills = Skill::with('talent')->get()->sortBy('name');
         // foreach($skills->talents as $item){
-            dd($skills);
+            // dd($skills);
         // }
 //         foreach($skills->talents as $items){
 // dd($items);

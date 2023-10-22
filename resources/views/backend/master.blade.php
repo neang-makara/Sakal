@@ -137,7 +137,6 @@
                             </a>
                         </li> --}}
 
-                         <li class="nav-item">
                         <li class="nav-item">
                             <a href="{{ route('talent.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>
@@ -146,7 +145,22 @@
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{ route('web_department.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Web Department
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('web_skill.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Web Skill
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('home.slider') }}" class="nav-link">
 

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\NewsYouthController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\TypesController;
 use App\Http\Controllers\Backend\UsersController;
@@ -10,15 +12,15 @@ use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Backend\SchoolsController;
 use App\Http\Controllers\Backend\TalentsController;
 use App\Http\Controllers\Backend\SubjectsController;
-use App\Http\Controllers\Frontend\AboutUsController as FrontendAboutUsController;
+use App\Http\Controllers\Backend\WebSkillController;
 use App\Http\Controllers\Frontend\ColleagueController;
 use App\Http\Controllers\Frontend\InstituteController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Frontend\UniversityController;
 use App\Http\Controllers\Frontend\HistoryUserController;
+use App\Http\Controllers\Backend\WebDepartmentController;
+use App\Http\Controllers\Frontend\AboutUsController as FrontendAboutUsController;
 use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\NewsYouthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -173,6 +175,34 @@ Route::prefix('newsyouth')->group(function () {
  });
  // End newsyouth
 
+// Start Web Department
+Route::prefix('web-department')->group(function () {
+    Route::get('/', [WebDepartmentController::class, 'index'])->name('web_department.index');
+    Route::get('/create', [WebDepartmentController::class, 'create'])->name('web_department.create');
+    Route::post('/store', [WebDepartmentController::class, 'store'])->name('web_department.store');
+    Route::get('/edit/{id}', [WebDepartmentController::class, 'edit'])->name('web_department.edit');
+    Route::post('/update', [WebDepartmentController::class, 'update'])->name('web_department.update');
+    Route::get('/inactive/{id}', [WebDepartmentController::class, 'inactive'])->name('web_department.inactive');
+    Route::get('/active/{id}', [WebDepartmentController::class, 'active'])->name('web_department.active');
+    // skill assign
+    Route::post('/assign', [WebDepartmentController::class, 'assign'])->name('web_department.assign');
+
+    
+
+});
+// End  Web Department
+ // Start Web Skill
+ Route::prefix('web-skill')->group(function () {
+    Route::get('/', [WebSkillController::class, 'index'])->name('web_skill.index');
+    Route::get('/create', [WebSkillController::class, 'create'])->name('web_skill.create');
+    Route::post('/store', [WebSkillController::class, 'store'])->name('web_skill.store');
+    Route::get('/edit/{id}', [WebSkillController::class, 'edit'])->name('web_skill.edit');
+    Route::post('/update', [WebSkillController::class, 'update'])->name('web_skill.update');
+    Route::get('/inactive/{id}', [WebSkillController::class, 'inactive'])->name('web_skill.inactive');
+    Route::get('/active/{id}', [WebSkillController::class, 'active'])->name('web_skill.active');
+
+});
+// End  Web Skill
 
 
 
