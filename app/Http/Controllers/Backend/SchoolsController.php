@@ -75,8 +75,10 @@ class SchoolsController extends Controller
 
         if ($request->hasFile('logo')) {
             // replace old image with oldName
-            $oldName = explode('logo/', $school->logo)[1];
-            $school->logo = Storage::disk('public')->putFileAs('logo', $request->logo, $oldName);
+            $name = $request->logo->getClientOriginalName();
+            $folderPath = 'logo/'.strtolower($name);
+            Storage::disk('public')->putFileAs('logo',$request->logo, $name);
+            $school->logo = $folderPath;
         }
 
         $school->note = $request->note ? $request->note : '';

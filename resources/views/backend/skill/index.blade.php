@@ -11,34 +11,26 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Created By</th>
-                <th>Assign Talents</th>
+                <th>Description</th>
+                <th>Created At</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @php $i=1; @endphp
-
-            @foreach (@$skills as $skill )
-            @php  
-                $relative         = json_decode($skill->talents);
-                $strTalents = implode(",<br>", $relative);
-// dd($strTalents);
-
-            @endphp
+            @foreach ($skills as $skill )
             <tr>
-                <td>{{ @$i++ }}</td>
-                <td>{{ @$skill->name }}</td>
-                <td> {!! @$strTalents ? : 'N/A' !!}</td>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $skill->name }}</td>
+                <td>{{ $skill->description }}</td>
                 <td>
-                    {!! @$skill->createdBy->name !!} <br>
+                    {{ $skill->createdBy->name }} <br>
                     <small>
-                    <i>{{ !empty(@$skill->created_at)? date("d-M-Y | h:i A", strtotime(@$skill->created_at)) : "N/A" }}</i>
+                    <i>{{ !empty($skill->created_at)? date("d-M-Y | h:i A", strtotime($skill->created_at)) : "N/A" }}</i>
                     </small>
                 </td>
                 <td>
-                    @if($skill->status == 1)
+                    @if($skill->is_active === 1)
                         <span class="badge badge-pill badge-success">Active</span>
                     @else
                         <span class="badge badge-pill badge-danger">Inactive</span>
@@ -46,7 +38,7 @@
                 </td>
                 <td>
                     <a href="{{ route('skill.edit', $skill->id) }}" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-pen"></i></a>
-                    @if($skill->status == 1)
+                    @if($skill->is_active === 1)
                         <a href="{{ route('skill.inactive',$skill->id) }}" class="btn btn-xs btn-oval btn-success" title="Inactive Now"><i class="fa fa-unlock"></i></a>
                     @else
                         <a href="{{ route('skill.active',$skill->id) }}" class="btn btn-xs btn-oval btn-danger" title="Active Now"><i class="fa fa-lock"></i></a>

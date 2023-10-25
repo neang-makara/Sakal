@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AjaxController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\TypesController;
@@ -135,9 +136,10 @@ Route::prefix('skill')->group(function () {
     Route::get('/active/{id}', [SkillsController::class, 'active'])->name('skill.active');
     // skill assign
     Route::post('/assign', [SkillsController::class, 'assign'])->name('skill.assign');
-
 });
 // End Skill
+//* Ajax Request
+    Route::get('/ajax/remove_talent/{slug}', [AjaxController::class, 'unSelectTalent'])->name('ajax.talent.remove');
 
 // Start Talent
 Route::prefix('talent')->group(function () {

@@ -12,6 +12,7 @@ class Skill extends Model
     use SoftDeletes;
 
     protected $guarded =[];
+    protected $table = 'tbl_skills';
 
     public function createdBy(){
         return $this->belongsTo(User::class, "created_by", "id");

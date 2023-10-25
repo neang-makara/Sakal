@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model {
 
-    protected $table = 'subjects';
+    protected $table = 'tbl_subjects';
 
     protected $fillable = [
         'name',
         'description',
-        'department_id',
+        'department_id'
     ];
 
     public function department() {

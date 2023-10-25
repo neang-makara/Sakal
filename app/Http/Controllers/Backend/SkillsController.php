@@ -7,47 +7,77 @@ use App\Models\Skill;
 use App\Models\Talent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Subject;
+use App\Models\TalentSkill;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SkillsController extends Controller
 {
     public function index(){
         // $data['skills'] = Skill::get()->sortBy('name')->sortBy('name');
-        $skills = Skill::get()->sortBy('name')->sortBy('name');
+        $param = [
+            'skills' => Skill::all(),
+        ];
     
-        $data['skills'] = $skills;
-        return view('backend.skill.index', $data);
+        return view('backend.skill.index', $param);
     }
 
     public function create(){
-        $data['test'] = "";
-        return view('backend.skill.create', $data);
+        $talent_skills = collect([]);
+        $param = [
+            'skill' => new Skill,
+            'talents' => Talent::all(),
+            'talent_skills' => $talent_skills,
+        ];
+        return view('backend.skill.create', $param);
     }
 
     public function store(Request $request){
+        // dd($request->all());
         $request->validate([
             'name' => ['required'],
         ]);
-
-        $subject = new Skill();
-        $subject->name = @$request->name;
-        $subject->talents = "[]";
-        $subject->created_by = auth()->id();
-        $subject->save();
-
-        return redirect()->route('skill.index')->with('success', 'Create success!'); 
+        try{
+            DB::beginTransaction();
+            $message  = 'Update';
+            $skill = Skill::find($request->id);
+            if(is_null($skill)){
+                $message = 'Create';
+                $skill = new Skill;
+            }
+            $skill->is_active = !is_null($request->is_active) ? TRUE : FALSE;
+            $skill->name = $request->name;
+            $skill->description = $request->description ?? 'N/A';
+            $skill->created_by = Auth::user()->id;
+            $skill->save();
+            forEach($request->talent_ids as $id){
+                $talent_skill = TalentSkill::find($id);
+                if(is_null($talent_skill)){
+                    $talent_skill = new TalentSkill;
+                }
+                $talent_skill->skill_id = $skill->id;
+                $talent_skill->talent_id = $id;
+                $talent_skill->is_active = true;
+                $talent_skill->save();
+            }
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            throw $e;
+        }
+        return redirect()->route('skill.index')->with('success', ''.$message.' success!'); 
     }
 
     public function edit($id){
-        $skill = Skill::findOrFail($id);       
-        // Get related convert to array
-        $relative         = json_decode($skill->talents);
-        // Get Value
-        $data['relative_talents'] = @Talent::whereIn("name", @$relative)->get();
-        $data['skill'] = $skill;
-
-        $data['talents'] = @Talent::where('status',1)->get();
-
-        return view('backend.skill.edit', $data);
+        $talent_skills = TalentSkill::where('is_active',true)->where('skill_id',$id)->get();
+        $param = [
+            'talents' => Talent::where('is_active',true)->get(),
+            'talent_skills' => $talent_skills->pluck('talent_id'),
+            'skill' => Skill::find($id),
+        ];
+        return view('backend.skill.create', $param);
     }
 
     public function update(Request $request){
@@ -61,12 +91,12 @@ class SkillsController extends Controller
     }
 
     public function inactive($id){
-        Skill::findOrFail($id)->update(['status' => 0]);
+        Skill::findOrFail($id)->update(['is_active' => 0]);
         return redirect()->back()->with('info', 'Disabled success!');   
     }
 
     public function active($id){
-        Skill::findOrFail($id)->update(['status' => 1]);
+        Skill::findOrFail($id)->update(['is_active' => 1]);
         return redirect()->back()->with('info', 'Active success!'); 
     }
 

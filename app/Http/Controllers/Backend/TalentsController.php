@@ -7,36 +7,49 @@ use App\Models\Skill;
 use App\Models\Talent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class TalentsController extends Controller
 {
     public function index(){
-        $data['talents'] = Talent::get()->sortBy('name')->sortBy('name');
-        // dd($data);
-        return view('backend.talent.index', $data);
+        $param = [
+            'users' => User::all(),
+            'talents' => Talent::all(),
+        ];
+        return view('backend.talent.index', $param);
     }
 
     public function create(){
-        return view('backend.talent.create');
+        $param = [
+            'talent' => new Talent,
+        ];
+        return view('backend.talent.create',$param);
     }
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required|unique:talent|max:255',
+            'name' => ['required'],
         ]);
+        $message  = 'Update';
+        $talent = Talent::find($request->id);
+        if(is_null($talent)){
+            $message = 'Create';
+            $talent = new Talent;
+        }
+        $talent->is_active = !is_null($request->is_active) ? TRUE : FALSE;
+        $talent->name = $request->name;
+        $talent->description = $request->description;
+        $talent->created_by = auth()->id();
+        $talent->save();
 
-        $subject = new talent();
-        $subject->name = @$request->name;
-        // $subject->skill_id = @$request->skill_id;
-        $subject->created_by = auth()->id();
-        $subject->save();
-
-        return redirect()->route('talent.index')->with('success', 'Create success!'); 
+        return redirect()->route('talent.index')->with('success', ''.$message. 'success!'); 
     }
 
     public function edit($id){
-        $data['talent'] = talent::findOrFail($id);
-        return view('backend.Talent.edit', $data);
+        $param = [
+            'talent' => Talent::find($id),
+        ];
+        return view('backend.talent.create', $param);
     }
 
     public function update(Request $request){
@@ -50,12 +63,12 @@ class TalentsController extends Controller
     }
 
     public function inactive($id){
-        talent::findOrFail($id)->update(['status' => 0]);
+        talent::findOrFail($id)->update(['is_active' => 0]);
         return redirect()->back()->with('info', 'Disabled success!');   
     }
 
     public function active($id){
-        talent::findOrFail($id)->update(['status' => 1]);
+        talent::findOrFail($id)->update(['is_active' => 1]);
         return redirect()->back()->with('info', 'Active success!'); 
     }
 

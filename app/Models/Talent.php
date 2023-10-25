@@ -12,6 +12,7 @@ class Talent extends Model
     use SoftDeletes;
 
     protected $guarded =[];
+    protected $table = 'tbl_talents';
 
     public function skill() {
         return $this->belongsTo(Skill::class, 'skill_id', 'id');

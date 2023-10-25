@@ -20,6 +20,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/main.css') }}">
+    <link rel="stylesheet" href="{{ url('css/card/card.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
@@ -41,101 +42,83 @@
     <!-- header -->
     @include('frontend.header', ['types' => \App\Models\Type::all()])
     <!-- end header -->
-
+    @php
+        $data = json_decode($user_history['data_obj'], true);
+    @endphp
     <div class="container">
-        <form action="{{ route('frontend.submit.talent') }}" method="POST">
-            @csrf
-        <div class="row" style="margin-top: 30px;">
-            @include('frontend.message.message')
-            {{-- form 1 --}}
-            <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="card card-primary">
-                  <div class="card-header">
-                    <h3 class="card-title header_title">១. សូមបំពេញពត៌មានផ្ទាល់ខ្លួន</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="name">ឈ្មោះ<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="name"  name="name" placeholder="Enter Name" required>
-                                      </div>
-                                </div>
-                            <div class="col-2">
-
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">ភេទ<span class="text-danger">*</span></label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" id="female" name="gender" value="Female">
-                                        <label class="form-check-label" for="female">ស្រី</label>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <input class="form-check-input" type="radio" id="male" name="gender" value="Male" checked>
-                                        <label class="form-check-label" for="male">ប្រុស</label>
-                                      </div>
-                                  </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="exampleInputFile">លេខទូរស័ទ្ទ</label>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Name" required>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.card -->
+        <div class="card" data-state="#about">
+            <div class="card-header">
+            <div class="card-cover" style="background-image: url('https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80')"></div>
+            <img class="card-avatar" src="{{ url('images/avatar.png') }}" alt="avatar" />
+            <h1 class="card-fullname">{{ $data['name'] }}</h1>
+            <h2 class="card-jobtitle"></h2>
             </div>
-            {{-- End form 1 --}}
-             {{-- form 2 --}}
-             <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="card card-info">
-                  <div class="card-header">
-                    <h3 class="card-title">២. តើអ្នកមានទេពកោសល្យ និងចំណង់ចំណូលចិត្តអ្វីខ្លះ?</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                    <form role="form">
-                        <div class="card-body">
-                            <div class="row">
-                                @foreach (@$talents as $item)
-                                <div class="col-sm-4">
-                                    <!-- checkbox -->
-                                    <div class="form-group">
-                                      <div class="form-check">
-                                        <input class="form-check-input" id="{{$item->id}}" name="talents[]" value="{{ $item->id }}" type="checkbox">
-                                        <label class="form-check-label" for="{{$item->id}}">{{ $item->name }}</label>
-                                      </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    <div class="card-body">
-                     
-                    
-                    
-                    </div>
-                    <!-- /.card-body -->
+            <div class="card-main">
+            <div class="card-section is-active" id="about">
+                <div class="card-content">
+                <div class="card-subtitle">ABOUT</div>
+                <div class="card-subtitle" style="margin-top: 10px"><i class="fas fa-phone-alt fa-fw"></i> Phone</div>
+                <p class="card-desc">
+                    {{ $data['phone'] }}
+                </p>
+                <div style="margin-top: 5px" class="card-subtitle"><i class="fas fa-venus-mars fa-fw"></i>Gender</div>
+                <p class="card-desc">
+                    {{ $data['gender'] }}
+                </p>
+                <div style="margin-top: 5px" class="card-subtitle"><i class="fas fa-heart fa-fw"></i> Talents</div>
+                <p class="card-desc">
+                    <ul style="display: flex">
+                        @foreach($talents->whereIn('id',$data['talent']) as $talent)
+                            <li class="list-talent">{{ $talent->name }}</li>
+                        @endforeach
+                    </ul>
+                </p>
+                </div>
+                <div class="card-social">
     
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                    </div>
-                  </form>
                 </div>
-                <!-- /.card -->
             </div>
-            {{-- End form 2 --}}
+            <div class="card-section" id="experience">
+                <div class="card-content">
+                <div class="card-subtitle">ជំនាញដែលសាកសម្យនឹងអ្នកគឺ៖</div>
+                <div class="card-timeline">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>&numero;</th>
+                                <th>ជំនាញ</th>
+                                <th>លម្អិត</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($skills->whereIn('id',$data['skill'])->take(5) as $skill)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $skill->name }}</td>
+                                    <td>{{ $skill->description }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+            <div class="card-section" id="contact">
+                <div class="card-content">
+                <div class="card-subtitle">ទាញយកគំរូជំនាញដែលរបស់អ្នក៖</div>
+                <div class="card-contact-wrapper">
+                    <button class="contact-me"><i class=" fas fa-download fa-fw"></i>ទាញយក</button>
+                </div>
+                </div>
+            </div>
+            <div class="card-buttons">
+                <button data-section="#about" class="is-active">ABOUT</button>
+                <button data-section="#experience">SKILLS</button>
+                <button data-section="#contact">DOWNLOAD</button>
+            </div>
+            </div>
         </div>
-        </form>
-
-
     </div>
-
-
     <!-- footer -->
     @include('frontend.footer')
     <!-- end footer -->
@@ -153,6 +136,7 @@
     <script src="{{ url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ url('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ url('js/card/card.js') }}"></script>
     @yield('script')
     <!-- AdminLTE App -->
     <script src="{{ url('dist/js/adminlte.min.js') }}"></script>

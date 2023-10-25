@@ -11,6 +11,7 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Description</th>
                 <th>Created By</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -23,6 +24,7 @@
             <tr>
                 <td>{{ @$i++ }}</td>
                 <td>{{ @$talent->name }}</td>
+                <td>{{ @$talent->description }}</td>
                 <td>
                     {{ @$talent->createdBy->name }} <br>
                     <small>
@@ -30,7 +32,7 @@
                     </small>
                 </td>
                 <td>
-                    @if($talent->status == 1)
+                    @if($talent->is_active === 1)
                         <span class="badge badge-pill badge-success">Active</span>
                     @else
                         <span class="badge badge-pill badge-danger">Inactive</span>
@@ -38,7 +40,7 @@
                 </td>
                 <td>
                     <a href="{{ route('talent.edit', $talent->id) }}" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-pen"></i></a>
-                    @if($talent->status == 1)
+                    @if($talent->is_active === 1)
                         <a href="{{ route('talent.inactive',$talent->id) }}" class="btn btn-xs btn-oval btn-success" title="Inactive Now"><i class="fa fa-unlock"></i></a>
                     @else
                         <a href="{{ route('talent.active',$talent->id) }}" class="btn btn-xs btn-oval btn-danger" title="Active Now"><i class="fa fa-lock"></i></a>
