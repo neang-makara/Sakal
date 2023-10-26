@@ -11,6 +11,7 @@ class WebSkillController extends Controller
 {
     public function index(){
         $data['skills'] = WebSkills::orderBy('id', 'DESC')->get();
+        // dd($data);
         return view('backend.web.skill.index', $data);
     }
 

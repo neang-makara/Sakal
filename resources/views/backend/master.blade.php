@@ -162,6 +162,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('backend.report.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Report
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('home.slider') }}" class="nav-link">
 
                                 <i class="nav-icon fas fa-circle"></i>

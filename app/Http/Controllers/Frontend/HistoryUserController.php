@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Frontend;
 use DB;
 use App\Models\Skill;
 use App\Models\Talent;
+use App\Models\WebSkills;
 use App\Models\HistoryUser;
 use Illuminate\Http\Request;
+use App\Models\WebStudentsSubmit;
+use App\Models\WebDepartmentSkill;
 use App\Http\Controllers\Controller;
 
 class HistoryUserController extends Controller
 {
     public function showForm(){
-        $data['talents'] = Talent::where('status',1)->get()->sortBy('name')->sortBy('name');
+        $data['web_skills'] = WebSkills::where('status',1)->get()->sortBy('name')->sortBy('name');
         // dd($data);
         return view('frontend.request_skill',$data);
     }
@@ -57,6 +60,52 @@ class HistoryUserController extends Controller
         $data['talents'] = Talent::where('status',1)->get()->sortBy('name')->sortBy('name');
 
         return view('frontend.request_skill',$data); 
+
+        // return redirect()->route('talent.index')->with('success', 'Create success!'); 
+    }
+    
+    public function studentSubmitSkill(Request $request){
+        $request->validate([
+            'name' => 'required|max:255',
+            'gender' => 'required',
+        ]);
+
+        $skillsArray = $request->input('skills');
+
+        // Find ID department in web_department_skills
+         $list_skill = DB::table('web_department_skills')
+         ->join('web_skills', 'web_department_skills.skill_id', '=', 'web_skills.id')
+         ->join('web_departments', 'web_department_skills.department_id', '=', 'web_departments.id')
+         ->select('web_department_skills.*', 'web_skills.skill_name', 'web_departments.department_name')
+         ->whereIn('web_department_skills.skill_id',@$skillsArray)
+         ->get();
+        $list_skills = $list_skill->groupBy('department_name')->map(function($values) {
+             return $values->count();
+        })->sort()->reverse();
+        $collection = collect($list_skills);
+ 
+        $chunks = $collection->chunk(3);
+
+        $newArray = WebSkills::select('skill_name')->whereIn('id', @$skillsArray)->pluck('skill_name')->toArray();;
+        // $test =array_keys($list_skills);
+        // dd($chunks[0]);json_decode
+        // save data 
+        $data = [
+            'skill_text' => @json_encode($newArray),
+            'result' => @json_encode($chunks[0]),
+            'data_obj->name' => @$request->name,
+            'data_obj->gender' => @$request->gender,
+            'data_obj->phone' => @$request->phone,
+        ];
+        $subject = new WebStudentsSubmit($data);
+        $subject->save(); 
+
+        $data['result'] =  @json_encode($chunks[0], true);
+        // dd($data);
+        // view display
+        $data['web_skills'] = WebSkills::where('status',1)->get()->sortBy('name')->sortBy('name');
+
+        return view('frontend.request_skill', $data); 
 
         // return redirect()->route('talent.index')->with('success', 'Create success!'); 
     }

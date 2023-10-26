@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\InstituteController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Frontend\UniversityController;
 use App\Http\Controllers\Frontend\HistoryUserController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\WebDepartmentController;
 use App\Http\Controllers\Frontend\AboutUsController as FrontendAboutUsController;
 use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
@@ -191,7 +192,7 @@ Route::prefix('web-department')->group(function () {
 
 });
 // End  Web Department
- // Start Web Skill
+// Start Web Skill
  Route::prefix('web-skill')->group(function () {
     Route::get('/', [WebSkillController::class, 'index'])->name('web_skill.index');
     Route::get('/create', [WebSkillController::class, 'create'])->name('web_skill.create');
@@ -203,6 +204,11 @@ Route::prefix('web-department')->group(function () {
 
 });
 // End  Web Skill
+// Start Report
+ Route::prefix('report')->group(function () {
+    Route::get('/index', [ReportController::class, 'index'])->name('backend.report.index');
+});
+// End  Report
 
 
 
@@ -228,4 +234,4 @@ Route::get('/show', [SkillsController::class,'showData']);
 // Frontend
 
 Route::get('/show-request-form', [HistoryUserController::class,'showForm'])->name('frontend.showForm');
-Route::post('/store/talent', [HistoryUserController::class,'userSubmitTalent'])->name('frontend.submit.talent');
+Route::post('/store/talent', [HistoryUserController::class,'studentSubmitSkill'])->name('frontend.student.submit');
