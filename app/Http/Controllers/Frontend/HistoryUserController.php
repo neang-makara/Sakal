@@ -85,7 +85,8 @@ class HistoryUserController extends Controller
         $collection = collect($list_skills);
  
         $chunks = $collection->chunk(3);
-
+        //$newtest =  json_decode($chunks[0]);
+     //dd($list_skills);
         $newArray = WebSkills::select('skill_name')->whereIn('id', @$skillsArray)->pluck('skill_name')->toArray();;
         // $test =array_keys($list_skills);
         // dd($chunks[0]);json_decode
@@ -101,12 +102,12 @@ class HistoryUserController extends Controller
         $subject->save(); 
 
         $data['result'] =  @json_encode($chunks[0], true);
-        // dd($data);
+        //dd($data);
         // view display
         $data['web_skills'] = WebSkills::where('status',1)->get()->sortBy('name')->sortBy('name');
 
         return view('frontend.request_skill', $data); 
 
-        // return redirect()->route('talent.index')->with('success', 'Create success!'); 
+        // return redirect()->route('frontend.showForm',$data); 
     }
 }

@@ -51,13 +51,16 @@
            <div class="col-md-12">
             <div class="alert alert-info">
                 <strong class="font-modul">មុខជំនាញដែលសាកសមនឹងអ្នករួមមាន៖</strong>
-                <ul>  @php
-                    $kh = json_decode($result);
-                   dd($kh);
-                @endphp
-                @foreach ($kh as $item)
-                    <li>{{$item}}</li>
-                @endforeach
+                <ul>  
+                    @php
+                        $strSelectDepartment = array_keys(json_decode($result, true));
+                        $selecedDepartment = implode(",<br>", @$strSelectDepartment);
+                        $numberNo = 1;
+                    @endphp
+                    @foreach(@$strSelectDepartment as $key)
+                            <li><strong>ជំនាញទី {{$numberNo++}}</strong> : {{ @$key }}</li>
+                    
+                    @endforeach
                 </ul>
                
             </div>

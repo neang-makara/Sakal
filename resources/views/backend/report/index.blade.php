@@ -26,18 +26,8 @@
                 $value         = json_decode($item->data_obj);
                 $relative         = json_decode($item->skill_text);
                 $strSelectedSkill = implode(",<br>", $relative);
-                // dd(array_values[$item->skill_text]));
-                //$new = explode(",", $item->skill_text);
-                //$newLangsHyphen =  implode(", ", array_keys($item->skill_text));
-                //$users = DB::table('web_skills')->whereIn("id", $item->skill_text)->get();
-              
-
-                // $tmp = \App\Product::find($id);
-                //$skill=  DB::table('web_skills')->whereIn('id', array(@$item->skill_text))->get();
-               // $skill = App\Models\WebSkills::whereIn('id',$item->skill_text)->get();
-                //dd($item->skill_text);
-                //$new_result         = json_decode($item->result);
-
+                $strSelectDepartment = array_keys(json_decode($item->result, true));
+                $selecedDepartment = implode(",<br>", $strSelectDepartment);
             @endphp
             <tr>
                 <td>{{ @$i++ }}</td>
@@ -49,7 +39,7 @@
                     {!! @$strSelectedSkill !!}
                 
                 </td>
-                <td>{{ @$item->result }}</td>
+                <td>{!! @$selecedDepartment !!}</td>
                 <td>                   
                     <i>{{ !empty(@$item->created_at)? date("d-M-Y | h:i A", strtotime(@$item->created_at)) : "N/A" }}</i>
                 </td>
