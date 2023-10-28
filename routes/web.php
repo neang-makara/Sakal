@@ -47,7 +47,7 @@ Route::get('/home-slider', [PagesController::class, 'index']);
 Route::get('/home', [PagesController::class, 'index']);
 Route::get('/type/{type}', [PagesController::class, 'viewSchoolsByType'])->name('schools');
 Route::get('/school-detail/{school}', [PagesController::class, 'schoolDetail']);
-Route::get('/about', [AboutUsController::class, 'index']);
+Route::get('/about', [FrontendAboutUsController::class, 'index']);
 
 // Start Login Page
 Route::get('/admin/login', [AuthController::class, 'login'])->name('login');
