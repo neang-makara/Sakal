@@ -53,7 +53,7 @@
                 <strong class="font-modul">មុខជំនាញដែលសាកសមនឹងអ្នករួមមាន៖</strong>
                 <ul>  
                     @php
-                        $strSelectDepartment = array_keys(json_decode($result, true));
+                        $strSelectDepartment = array_keys(json_decode(@$result, true));
                         $selecedDepartment = implode(",<br>", @$strSelectDepartment);
                         $numberNo = 1;
                     @endphp
@@ -101,7 +101,7 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="exampleInputFile">លេខទូរស័ទ្ទ</label>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Name" required>
+                                        <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter Name" required>
                                   </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                                     <!-- checkbox -->
                                     <div class="form-group">
                                       <div class="form-check">
-                                        <input class="form-check-input" id="{{@$item->id}}" name="skills[]" value="{{ @$item->id }}" type="checkbox">
+                                        <input class="form-check-input check_box" id='{{@$item->id}}' name='skills[]' value="{{ @$item->id }}" type="checkbox">
                                         <label class="form-check-label" for="{{@$item->id}}">{{ @$item->skill_name }}</label>
                                       </div>
                                     </div>
@@ -135,16 +135,12 @@
                                 @endforeach
                             </div>
                         </div>
-                    <div class="card-body">
-                     
-                    
-                    
-                    </div>
                     <!-- /.card-body -->
     
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                      <button type="submit" id="submit_form" class="btn btn-sm btn-primary">ស្នើរសុំ</button>
                     </div>
+                        <p id="message_danger" style ="color:rgb(255, 68, 0); font-size: 20px; font-weight: bold;"></p> 
                   </form>
                 </div>
                 <!-- /.card -->
@@ -223,6 +219,24 @@
                 }
             }
         })
+        
+        // select count table
+        // || $("input:checkbox:checked").length < 5
+        var $submit = $('#submit_form');
+        $checkbox = $('input[type=checkbox]');
+
+        $submit.prop('disabled', true);
+
+        $checkbox.on('click', function(){
+            if ($("input:checkbox:checked").length > 0  && $("input:checkbox:checked").length < 5) {
+            $submit.removeAttr('disabled');
+            $('#message_danger').text("");
+        }else{
+            $submit.prop('disabled', true);
+            $('#message_danger').text("កំណត់ចំណាំចំនួនដែលជ្រើសរើសមិនអាចលើសពី 5 ទេ!");
+        }
+        });
+
     </script>
 
 

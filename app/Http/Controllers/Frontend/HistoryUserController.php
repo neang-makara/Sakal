@@ -84,16 +84,20 @@ class HistoryUserController extends Controller
         })->sort()->reverse();
         $collection = collect($list_skills);
  
-        $chunks = $collection->chunk(3);
+        $chunks_array = $collection->chunk(3);
         //$newtest =  json_decode($chunks[0]);
-     //dd($list_skills);
+        // if find no department
+        @$chunks = @json_encode($chunks_array[0]);
+        if(@$chunks == "null"){
+            $chunks = "{}";
+        }
         $newArray = WebSkills::select('skill_name')->whereIn('id', @$skillsArray)->pluck('skill_name')->toArray();;
         // $test =array_keys($list_skills);
         // dd($chunks[0]);json_decode
         // save data 
         $data = [
             'skill_text' => @json_encode($newArray),
-            'result' => @json_encode($chunks[0]),
+            'result' => @$chunks,
             'data_obj->name' => @$request->name,
             'data_obj->gender' => @$request->gender,
             'data_obj->phone' => @$request->phone,
@@ -101,7 +105,7 @@ class HistoryUserController extends Controller
         $subject = new WebStudentsSubmit($data);
         $subject->save(); 
 
-        $data['result'] =  @json_encode($chunks[0], true);
+        $data['result'] = @$chunks;
         //dd($data);
         // view display
         $data['web_skills'] = WebSkills::where('status',1)->get()->sortBy('name')->sortBy('name');

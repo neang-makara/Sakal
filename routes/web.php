@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SliderController;
-use App\Http\Controllers\NewsYouthController;
+use App\Http\Controllers\Backend\NewsYouthController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\TypesController;
 use App\Http\Controllers\Backend\UsersController;
@@ -168,8 +168,8 @@ Route::post('/store/slider',[SliderController::class, 'StoreSlider'])->name('sto
 Route::prefix('newsyouth')->group(function () {
     Route::get('/', [NewsYouthController::class, 'index'])->name('newsyouth-list');
     Route::get('/detail/{subject}', [NewsYouthController::class, 'detail'])->name('newsyouth-detail');
-    Route::get('/create', [NewsYouthController::class, 'createNewsYouth'])->name('newsyouth-create-form');
-    Route::post('/create', [NewsYouthController::class, 'createNewsYouth'])->name('newsyouth-create');
+    Route::get('/create', [NewsYouthController::class, 'create'])->name('newsyouth.create');
+    Route::post('/store', [NewsYouthController::class, 'store'])->name('newsyouth.store');
     Route::get('/update/{subject}', [NewsYouthController::class, 'updateSubjectForm'])->name('newsyouth-update-form');
     Route::post('/update/{subject}', [NewsYouthController::class, 'updateSubject'])->name('newsyouth-update');
     Route::delete('/delete', [NewsYouthController::class, 'delete'])->name('subject-delete');

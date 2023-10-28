@@ -21,7 +21,7 @@
             @endif
         </div>
     </div>
-    <form action="{{ route('newsyouth-create') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('newsyouth.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-6">
@@ -72,7 +72,7 @@
     $(document).ready(function(){
      $("#sidebar-menu").removeClass('active open');
          $("#sidebar-menu li ul li").removeClass('active');
-         $("#menu_web_skill").addClass('active new_color');
+         $("#menu_new_youth").addClass('active new_color');
      // $("#menu_web_skill").css({ "background-color", "black" });
      });
 </script>

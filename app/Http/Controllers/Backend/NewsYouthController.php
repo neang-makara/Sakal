@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\NewsYouth;
@@ -16,14 +16,15 @@ class NewsYouthController extends Controller
         $data = [
             'newsyouth' => $newsYouth
         ];
-        return view('backend.newsyouth.create', $data);
+        //dd($data);
+        return view('backend.newsyouth.list', $data);
     }
 
-    public function createNewsYouthForm(){
+    public function create(){
         return view('backend.newsyouth.create');
     }
 
-    public function createNewsYouth(Request $request){
+    public function store(Request $request){
         $request->validate([
 
             'title'=> ['required'],

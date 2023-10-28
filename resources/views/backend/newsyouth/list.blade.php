@@ -21,25 +21,25 @@
             <tr>
                 <th>#</th>
                 <th>Title</th>
-                <th>News_Youth</th>
+                <th>Description</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($newsyouth as $newsyouths)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ @$loop->iteration }}</td>
                     <td>
-                        {{ $newsyouths->title }}
+                        {{ @$newsyouths->title }}
                     </td>
-                    {{-- <td>{{ $newsyouths->newsyouth->title }}</td> --}}
+                    <td>{{ @$newsyouths->description }}</td>
                     <td>
-                        <a href="{{ route('newsyouths-detail', $newsyouths) }}" class="btn btn-warning btn-xs" title="Detail"><i class="fa fa-eye"></i></a>
-                        <a href="{{ route('newsyouths-update-form', $newsyouths) }}" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pen"></i></a>
-                        <a href="javascript:void(0);" class="btn btn-warning btn-xs btn-delete" title="Delete" id="{{ $newsyouths->newsyouth_id }}"
+                        <a href="#" class="btn btn-warning btn-xs" title="Detail"><i class="fa fa-eye"></i></a>
+                        {{-- <a href="{{ route('newsyouths-update-form', $newsyouths->newsyouth_id) }}" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pen"></i></a> --}}
+                        {{-- <a href="javascript:void(0);" class="btn btn-warning btn-xs btn-delete" title="Delete" id="{{ $newsyouths->newsyouth_id }}"
                             data-toggle="modal" data-target="#modal-delete">
-                            <i class="fa fa-trash" id="{{ $department->newsyouth_id }}"></i>
-                        </a>
+                            <i class="fa fa-trash" id="{{ @$department->newsyouth_id }}"></i>
+                        </a> --}}
                     </td>
                 </tr>
             @endforeach
@@ -50,7 +50,7 @@
     <div class="modal fade" id="modal-delete" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ route('newsyouths-delete') }}" method="POST">
+                <form action="{{ route('subject-delete') }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="newsyouthsId" id="newsyouthsId" value="0">
@@ -71,7 +71,7 @@
 @endsection
 
 @section('action')
-    <a href="{{ route('newsyouth-create-form') }}" class="btn btn-primary btn-sm">CREATE</a>
+    <a href="{{ route('newsyouth.create') }}" class="btn btn-primary btn-sm">CREATE</a>
 @endsection
 
 @section('script')
@@ -90,7 +90,7 @@
         $(document).ready(function(){
         $("#sidebar-menu").removeClass('active open');
             $("#sidebar-menu li ul li").removeClass('active');
-            $("#menu_web_skill").addClass('active new_color');
+            $("#menu_new_youth").addClass('active new_color');
         // $("#menu_web_skill").css({ "background-color", "black" });
         });
     </script>

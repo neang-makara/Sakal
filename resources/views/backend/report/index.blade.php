@@ -26,7 +26,7 @@
                 $value         = json_decode($item->data_obj);
                 $relative         = json_decode($item->skill_text);
                 $strSelectedSkill = implode(",<br>", $relative);
-                $strSelectDepartment = array_keys(json_decode($item->result, true));
+                $strSelectDepartment = array_keys(json_decode(@$item->result, true));
                 $selecedDepartment = implode(",<br>", $strSelectDepartment);
             @endphp
             <tr>
