@@ -157,6 +157,15 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('home.report') }}" class="nav-link">
+
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Reports
+                                </p>
+                            </a>
+                        </li>
 
                         {{-- <li class="nav-item">
                             <a href="#" class="nav-link">

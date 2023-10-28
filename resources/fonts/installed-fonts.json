@@ -1,0 +1,14 @@
+{
+    "dejavusans": {
+        "normal": "dejavusans_normal_eb74cecd00b39fd26ad8e62bccdca1db"
+    },
+    "khmer os battambang regular": {
+        "normal": "khmer_os_battambang_regular_normal_af21b25e6a80dcf73d24bd69e52559a3"
+    },
+    "dejavu sans": {
+        "bold": "C:\\xampp\\htdocs\\Sakal\\vendor\\dompdf\\dompdf\/lib\/fonts\/DejaVuSans-Bold",
+        "bold_italic": "C:\\xampp\\htdocs\\Sakal\\vendor\\dompdf\\dompdf\/lib\/fonts\/DejaVuSans-BoldOblique",
+        "italic": "C:\\xampp\\htdocs\\Sakal\\vendor\\dompdf\\dompdf\/lib\/fonts\/DejaVuSans-Oblique",
+        "normal": "dejavu_sans_normal_eb74cecd00b39fd26ad8e62bccdca1db"
+    }
+}

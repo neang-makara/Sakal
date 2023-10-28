@@ -107,7 +107,7 @@
                 <div class="card-content">
                 <div class="card-subtitle">ទាញយកគំរូជំនាញដែលរបស់អ្នក៖</div>
                 <div class="card-contact-wrapper">
-                    <button class="contact-me"><i class=" fas fa-download fa-fw"></i>ទាញយក</button>
+                    <button class="contact-me"><a href="/skill-report/{{ $request_id }}"><i class=" fas fa-download fa-fw"></i>ទាញយក</a></button>
                 </div>
                 </div>
             </div>

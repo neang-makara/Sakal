@@ -9,6 +9,8 @@ use App\Models\HistoryUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TalentSkill;
+use Illuminate\Support\Facades\View;
+use PDF;
 
 class HistoryUserController extends Controller
 {
@@ -40,11 +42,27 @@ class HistoryUserController extends Controller
             'user_skills' => $user_skills,
             'user_history' => $subject,
             'skills' => Skill::all(),
-            'talents' => Talent::all()
-
+            'talents' => Talent::all(),
+            'request_id' => $subject->id
         ];
-        return view('frontend.match_skill',$param);
+        return redirect('/request-skill')->with('param', $param);
 
         // return redirect()->route('talent.index')->with('success', 'Create success!'); 
+    }
+    public function requestSkill()
+    {
+        $param = session('param');
+        return view('frontend.match_skill',$param);
+    }
+    public function requestDownload($request_id)
+    {
+        $data = [
+            'user_data' => HistoryUser::find($request_id),
+            'skills' => Skill::where('is_active',true)->get(),
+            'talents' => Talent::where('is_active',true)->get(),
+        ];
+        
+        $pdf = PDF::loadView('frontend.report',compact('data'));
+        return $pdf->download();
     }
 }

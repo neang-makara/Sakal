@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\HistoryUserController;
 use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\NewsYouthController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -173,6 +174,12 @@ Route::prefix('newsyouth')->group(function () {
     Route::post('/update/{subject}', [NewsYouthController::class, 'updateSubject'])->name('newsyouth-update');
     Route::delete('/delete', [NewsYouthController::class, 'delete'])->name('subject-delete');
  });
+ Route::prefix('report')->group(function () {
+    Route::get('/index', [ReportController::class, 'index'])->name('home.report');
+    Route::get('/inactive/{id}', [ReportController::class, 'inactive'])->name('report.inactive');
+    Route::get('/active/{id}', [ReportController::class, 'active'])->name('report.active');
+    Route::get('/download/{slug?}', [ReportController::class, 'download'])->name('report.download');
+ });
  // End newsyouth
 
 
@@ -201,3 +208,5 @@ Route::get('/show', [SkillsController::class,'showData']);
 
 Route::get('/show-request-form', [HistoryUserController::class,'showForm'])->name('frontend.showForm');
 Route::post('/store/talent', [HistoryUserController::class,'userSubmitTalent'])->name('frontend.submit.talent');
+Route::get('/request-skill',[HistoryUserController::class,'requestSkill'])->name('request.skill');
+Route::get('/skill-report/{slug}',[HistoryUserController::class,'requestDownload'])->name('skill.report');
