@@ -67,22 +67,10 @@
                             <a href="{{ route('home.slider') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-sliders-h"></i>
                                 <p>
-                                    &nbsp; Slider
+                                    &nbsp; Sliders
                                 </p>
                             </a>
                         </li>
-
-                        @if (Auth::user()->is_admin)
-                            <li class="nav-item">
-                                <a href="{{ route('user-list') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-circle"></i>
-                                    <p>
-                                        Users
-                                    </p>
-                                </a>
-                            </li>
-                        @endif
-
                         <li class="nav-item" id="menu_type">
                             <a href="{{ route('type-list') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon far fa-plus-square"></i>
@@ -105,7 +93,7 @@
                             <a href="{{ route('department-list') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-chalkboard"></i>
                                 <p>
-                                    &nbsp; Departments
+                                    &nbsp; Departments A
                                 </p>
                             </a>
                         </li>
@@ -123,7 +111,7 @@
                             <a href="{{ route('newsyouth-list') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-id-card"></i>
                                 <p>
-                                    &nbsp; News Youth
+                                    &nbsp; News Youths
                                 </p>
                             </a>
                         </li>
@@ -132,24 +120,35 @@
                             <a href="{{ route('web_department.index') }}" class="nav-link" title="Web Department">
                                 &nbsp;<i class="nav-icon fas fa-building"></i>
                                 <p>
-                                    &nbsp; Department
+                                    &nbsp; Departments B
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item" id="menu_web_skill">
                             <a href="{{ route('web_skill.index') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-lightbulb"></i>  
-                                &nbsp; Skill
+                                &nbsp; Skills
                                 </a>
                         </li>
                         <li class="nav-item" id="menu_report">
                             <a href="{{ route('backend.report.index') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-paste"></i>
                                 <p>
-                                &nbsp; Report
+                                &nbsp; Reports
                                 </p>
                             </a>
                         </li>
+
+                        @if (Auth::user()->is_admin == 1)
+                            <li class="nav-item" id="menu_users">
+                                <a href="{{ route('user-list') }}" class="nav-link">
+                                    &nbsp;<i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        &nbsp; Users
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
                         {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>

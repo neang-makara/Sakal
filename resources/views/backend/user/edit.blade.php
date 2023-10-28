@@ -62,5 +62,12 @@
 @endsection
 
 @section('script')
-
+<script>
+    $(document).ready(function(){
+        $("#sidebar-menu").removeClass('active open');
+            $("#sidebar-menu li ul li").removeClass('active');
+            $("#menu_users").addClass('active new_color');
+        // $("#menu_web_skill").css({ "background-color", "black" });
+        });
+</script>
 @endsection
