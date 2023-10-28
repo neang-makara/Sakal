@@ -1,0 +1,11 @@
+.new_color{
+    background-color: #25a8bc;
+    opacity: 1;
+}
+.new_color a{
+    color: white !important;
+    opacity: 0.8;
+}
+[class*=sidebar-dark] .brand-link {
+    border-bottom: 0px solid #4b545c;
+}

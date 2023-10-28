@@ -88,5 +88,12 @@
             var subjectId = event.target.id;
             $('#subjectId').attr('value', subjectId);
         });
+
+        $(document).ready(function(){
+        $("#sidebar-menu").removeClass('active open');
+            $("#sidebar-menu li ul li").removeClass('active');
+            $("#menu_report").addClass('active new_color');
+        // $("#menu_web_skill").css({ "background-color", "black" });
+        });
     </script>
 @endsection

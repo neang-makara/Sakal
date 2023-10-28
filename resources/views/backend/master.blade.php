@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 
 <body class="text-dark hold-transition sidebar-mini">
@@ -32,9 +33,9 @@
             </a> --}}
 
             <!-- Sidebar -->
-            <div class="sidebar">
+            <div class="sidebar p-0">
                 <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="user-panel mt-2 pb-2 mb-2 d-flex">
                     {{-- <div class="image">
                         <img src="{{ url('images/white_Sakkal.png')}}" class="img-circle elevation-2" alt="User Image">
                     </div> --}}
@@ -50,14 +51,23 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column sidebar-menu" data-widget="treeview" role="menu"
+                        data-accordion="false" id="sidebar-menu">
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu_dashborad">
                             <a href="{{ route('dashboard') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
+                                &nbsp;<i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Dashboard
+                                    &nbsp; Dashboard
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item"  id="menu_slider">
+                            <a href="{{ route('home.slider') }}" class="nav-link">
+                                &nbsp;<i class="nav-icon fas fa-sliders-h"></i>
+                                <p>
+                                    &nbsp; Slider
                                 </p>
                             </a>
                         </li>
@@ -73,112 +83,73 @@
                             </li>
                         @endif
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu_type">
                             <a href="{{ route('type-list') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
+                                &nbsp;<i class="nav-icon far fa-plus-square"></i>
                                 <p>
-                                    Types
+                                    &nbsp; Types
                                 </p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu_school">
                             <a href="{{ route('school-list') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
+                                &nbsp;<i class="nav-icon fas fa-school"></i>
                                 <p>
-                                    Schools
+                                    &nbsp; Schools
                                 </p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu_department_one">
                             <a href="{{ route('department-list') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
+                                &nbsp;<i class="nav-icon fas fa-chalkboard"></i>
                                 <p>
-                                    Departments
+                                    &nbsp; Departments
                                 </p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu_sub">
                             <a href="{{ route('subject-list') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
+                                &nbsp;<i class="nav-icon fas fa-sitemap"></i>
                                 <p>
-                                    Subjects
+                                    &nbsp; Subjects
                                 </p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu_new_youth">
                             <a href="{{ route('newsyouth-list') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
+                                &nbsp;<i class="nav-icon fas fa-id-card"></i>
                                 <p>
-                                    News Youth
+                                    &nbsp; News Youth
                                 </p>
                             </a>
                         </li>
 
-
-                        <li class="nav-item">
-                            <a href="{{ route('skill.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
+                        <li class="nav-item" id="menu_department_two">
+                            <a href="{{ route('web_department.index') }}" class="nav-link" title="Web Department">
+                                &nbsp;<i class="nav-icon fas fa-building"></i>
                                 <p>
-                                    Skill
+                                    &nbsp; Department
                                 </p>
                             </a>
                         </li>
-
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('book-list') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    Book
-                                </p>
-                            </a>
-                        </li> --}}
-
-                        <li class="nav-item">
-                            <a href="{{ route('talent.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    Talent
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('web_department.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    Web Department
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu_web_skill">
                             <a href="{{ route('web_skill.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    Web Skill
-                                </p>
-                            </a>
+                                &nbsp;<i class="nav-icon fas fa-lightbulb"></i>  
+                                &nbsp; Skill
+                                </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="menu_report">
                             <a href="{{ route('backend.report.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
+                                &nbsp;<i class="nav-icon fas fa-paste"></i>
                                 <p>
-                                    Report
+                                &nbsp; Report
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('home.slider') }}" class="nav-link">
-
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    Slider
-                                </p>
-                            </a>
-                        </li>
-
                         {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>
@@ -190,9 +161,9 @@
 
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
+                                &nbsp;<i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
-                                    Logout
+                                    &nbsp; Logout
                                 </p>
                             </a>
                         </li>
