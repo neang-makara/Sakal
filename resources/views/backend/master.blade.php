@@ -64,7 +64,7 @@
                         </li>
 
                         <li class="nav-item"  id="menu_slider">
-                            <a href="{{ route('home.slider') }}" class="nav-link">
+                            <a href="{{ route('slider.index') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-sliders-h"></i>
                                 <p>
                                     &nbsp; Sliders
@@ -231,6 +231,42 @@
     @yield('script')
     <!-- AdminLTE App -->
     <script src="{{ url('dist/js/adminlte.min.js') }}"></script>
+    <!-- link CKeditor -->
+    <script src="https://cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor1', {
+            height: 400,
+            baseFloatZIndex: 10005
+        });
+    </script>
+    <!-- End link CKeditor -->
+     <!-- sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+             $(document).on("click", "#delete", function(e){
+                 e.preventDefault();
+                 var link = $(this).attr("href");
+                 Swal.fire({
+                     title: 'Are you sure?',
+                     text: "Delete this Data?!",
+                     icon: 'warning',
+                     showCancelButton: true,
+                     confirmButtonColor: '#3085d6',
+                     cancelButtonColor: '#d33',
+                     confirmButtonText: 'Yes, delete it!'
+                     }).then((result) => {
+                     if (result.isConfirmed) {
+                         window.location.href = link
+                         Swal.fire(
+                         'Deleted!',
+                         'Your file has been deleted.',
+                         'success'
+                         )
+                     }
+                 })
+             }); 
+     </script>
+     <!-- end sweetalert -->
 </body>
 
 </html>

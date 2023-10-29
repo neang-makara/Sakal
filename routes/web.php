@@ -2,23 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SliderController;
-use App\Http\Controllers\Backend\NewsYouthController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\TypesController;
 use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Frontend\TestController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\SkillsController;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Backend\SchoolsController;
 use App\Http\Controllers\Backend\TalentsController;
 use App\Http\Controllers\Backend\SubjectsController;
 use App\Http\Controllers\Backend\WebSkillController;
+use App\Http\Controllers\Backend\NewsYouthController;
 use App\Http\Controllers\Frontend\ColleagueController;
 use App\Http\Controllers\Frontend\InstituteController;
+use App\Http\Controllers\Backend\AdminSliderController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Frontend\UniversityController;
 use App\Http\Controllers\Frontend\HistoryUserController;
-use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\WebDepartmentController;
 use App\Http\Controllers\Frontend\AboutUsController as FrontendAboutUsController;
 use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
@@ -158,9 +159,19 @@ Route::prefix('talent')->group(function () {
 
 // sliders
 Route::prefix('slider')->group(function () {
-Route::get('/home/slider',[SliderController::class, 'HomeSlider'])->name('home.slider');
-Route::get('/add/slider',[SliderController::class, 'AddSlider'])->name('add.slider');
-Route::post('/store/slider',[SliderController::class, 'StoreSlider'])->name('store.slider');
+// Route::get('/home/slider',[SliderController::class, 'HomeSlider'])->name('home.slider');
+// Route::get('/add/slider',[SliderController::class, 'AddSlider'])->name('add.slider');
+// Route::post('/store/slider',[SliderController::class, 'StoreSlider'])->name('store.slider');
+
+Route::get('/list',[AdminSliderController::class, 'index'])->name('slider.index');
+Route::get('/create',[AdminSliderController::class, 'create'])->name('slider.create');
+Route::post('/store/slider',[AdminSliderController::class, 'store'])->name('slider.store');
+Route::get('/edit/{id}',[AdminSliderController::class, 'edit'])->name('slider.edit');
+Route::post('/update',[AdminSliderController::class, 'update'])->name('slider.update');
+Route::get('/inactive/{id}', [AdminSliderController::class, 'inactive'])->name('slider.inactive');
+Route::get('/active/{id}', [AdminSliderController::class, 'active'])->name('slider.active');
+Route::get('/delete/{id}', [AdminSliderController::class, 'delete'])->name('slider.delete');
+
 });
 
 
