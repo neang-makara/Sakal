@@ -21,8 +21,11 @@ use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Frontend\UniversityController;
 use App\Http\Controllers\Frontend\HistoryUserController;
 use App\Http\Controllers\Backend\WebDepartmentController;
-use App\Http\Controllers\Frontend\AboutUsController as FrontendAboutUsController;
+use App\Http\Controllers\Frontend\AboutUsController;
 use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
+use App\Http\Controllers\Backend\AdminContactController;
+use App\Http\Controllers\Frontend\UserContactController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -215,6 +218,14 @@ Route::prefix('web-department')->group(function () {
 
 });
 // End  Web Skill
+// Start Contact Messages
+Route::prefix('contact-message')->group(function () {
+    Route::get('/', [AdminContactController::class, 'index'])->name('contact_message.index');
+    Route::get('/read/{id}', [AdminContactController::class, 'read'])->name('contact_message.read');
+    Route::get('/view/{id}', [AdminContactController::class, 'view'])->name('contact_message.view');
+    Route::get('/delete/{id}', [AdminContactController::class, 'deleted'])->name('contact_message.delete');
+});
+// End  Contact Messages
 // Start Report
  Route::prefix('report')->group(function () {
     Route::get('/index', [ReportController::class, 'index'])->name('backend.report.index');
@@ -246,3 +257,11 @@ Route::get('/show', [SkillsController::class,'showData']);
 
 Route::get('/show-request-form', [HistoryUserController::class,'showForm'])->name('frontend.showForm');
 Route::post('/store/talent', [HistoryUserController::class,'studentSubmitSkill'])->name('frontend.student.submit');
+
+Route::post('/store-message', [HistoryUserController::class, 'submitstore']);
+
+// Start Report
+Route::prefix('user-contact-request')->group(function () {
+    Route::post('/index', [UserContactController::class, 'submitstore'])->name('frontend.submit.store');
+});
+// End  Report

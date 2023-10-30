@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use DB;
+use Carbon\Carbon;
 use App\Models\Skill;
 use App\Models\Talent;
+use App\Models\Contacts;
 use App\Models\WebSkills;
 use App\Models\HistoryUser;
 use Illuminate\Http\Request;
@@ -113,5 +115,25 @@ class HistoryUserController extends Controller
         return view('frontend.request_skill', $data); 
 
         // return redirect()->route('frontend.showForm',$data); 
+    }
+
+    public function submitstore(Request $request){
+        $request->validate([
+            'name' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+        $type = new Contacts();
+        $type->name = @$request->name;
+        $type->phone = @$request->phone;
+        $type->email = @$request->email;
+        $type->subject = @$request->subject;
+        $type->message = @$request->message;
+        $type->created_at = Carbon::now();
+        $type->save();
+        return redirect()->back()->with('success', 'Active success!'); 
+
     }
 }

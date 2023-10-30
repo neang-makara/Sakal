@@ -130,6 +130,12 @@
                                 &nbsp; Skills
                                 </a>
                         </li>
+                        <li class="nav-item" id="menu_contact_message">
+                            <a href="{{ route('contact_message.index') }}" class="nav-link">
+                                &nbsp;<i class="nav-icon fas fa-envelope"></i>  
+                                &nbsp; Contacts
+                                </a>
+                        </li>
                         <li class="nav-item" id="menu_report">
                             <a href="{{ route('backend.report.index') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-paste"></i>

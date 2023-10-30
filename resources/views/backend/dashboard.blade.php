@@ -14,6 +14,8 @@
     $webDepartments = @\App\Models\WebDepartments::where('status',1)->count();
     $webSkills = @\App\Models\WebSkills::where('status',1)->count();
     $webStudentsSubmit = @\App\Models\WebStudentsSubmit::count();
+    $messsages = @\App\Models\Contacts::count();
+    $users = @\App\Models\User::count();
     
     
     
@@ -118,11 +120,31 @@
                         </div>
 
                         <div class="col-12 col-sm-6 col-md-3 p-2">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-envelope"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Messages</span>
+                                    <span class="info-box-number">{{@$messages}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-3 p-2">
                             <div class="info-box">
-                                <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-paste"></i></span>
+                                <span class="info-box-icon bg-danger elevation-1"><i class="nav-icon fas fa-paste"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Reports</span>
                                     <span class="info-box-number">{{@$webStudentsSubmit}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-3 p-2">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-success elevation-1"><i class="nav-icon fas fa-users"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Users</span>
+                                    <span class="info-box-number">{{@$users}}</span>
                                 </div>
                             </div>
                         </div>
