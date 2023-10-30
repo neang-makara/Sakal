@@ -113,27 +113,5 @@ class HistoryUserController extends Controller
         $data['web_skills'] = WebSkills::where('status',1)->get()->sortBy('name')->sortBy('name');
 
         return view('frontend.request_skill', $data); 
-
-        // return redirect()->route('frontend.showForm',$data); 
-    }
-
-    public function submitstore(Request $request){
-        $request->validate([
-            'name' => 'required|max:255',
-            'phone' => 'required',
-            'email' => 'required',
-            'subject' => 'required',
-            'message' => 'required',
-        ]);
-        $type = new Contacts();
-        $type->name = @$request->name;
-        $type->phone = @$request->phone;
-        $type->email = @$request->email;
-        $type->subject = @$request->subject;
-        $type->message = @$request->message;
-        $type->created_at = Carbon::now();
-        $type->save();
-        return redirect()->back()->with('success', 'Active success!'); 
-
     }
 }
