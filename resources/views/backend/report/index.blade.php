@@ -73,6 +73,7 @@
 @endsection
 
 @section('action')
+    <a class="btn btn-primary btn-sm" href="{{ route('backed.export.report') }}">Export Excel</a>
 @endsection
 
 @section('script')

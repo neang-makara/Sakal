@@ -229,6 +229,7 @@ Route::prefix('contact-message')->group(function () {
 // Start Report
  Route::prefix('report')->group(function () {
     Route::get('/index', [ReportController::class, 'index'])->name('backend.report.index');
+    Route::get('/export-report',[ReportController::class,'export'])->name('backed.export.report');
 });
 // End  Report
 
