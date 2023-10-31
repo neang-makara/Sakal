@@ -27,7 +27,7 @@
                     <a href="https://t.me/sakkalweb" target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
                         <img  src="{{ url('/images/telegram.png')}}" alt="Cover Image" width="40px" height="40px">
                     </a>
-                    <a href="https://www.facebook.com/Sakkal-104118368906640" target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                    <a href="https://www.facebook.com/sakkalwebsite/" target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
                         <img  src="{{ url('/images/Facebook.png')}}" alt="Cover Image" width="40px" height="40px">
                     </a>
                     <a href="https://www.youtube.com/channel/UCC6axM_XDG_Y2YIRi-O25pw/featured" target="blank" class="navbar-brand  " href="{{ url('/') }}">

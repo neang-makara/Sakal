@@ -12,36 +12,84 @@
 @section('content')
 
     {{-- Start slide show --}}
-    <div class="col-md-12">
-        <div id="carouselExampleDark" class=" carousel-dark slide" data-bs-interval="1200" data-bs-ride="carousel"
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-interval="1800" data-bs-ride="carousel"
         style="margin-top: 40px;">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
                 aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4"
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
                 aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6"
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
                 aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4"
+                aria-label="Slide 5"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5"
+                aria-label="Slide 6"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6"
+                aria-label="Slide 7"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="7"
+                aria-label="Slide 8"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="8"
+                aria-label="Slide 9"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="9"
+                aria-label="Slide 10"></button>
 
         </div>
-        @foreach ($sliders as $key => $slider)
-        <div class="carousel-inner">
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ url('/images/University/1.RUPP_Slide.png') }}" class="d-block w-100" alt="Rupp">
+
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url('/images/University/2.RUA_Slide.png') }}" class="d-block w-100" alt="...">
+
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url('/images/University/3.NIM.png') }}" class="d-block w-100" alt="...">
+
+            </div>
 
             <div class="carousel-item">
-                <img src="{{ asset($slider->image) }}" class="d-block w-100 carousel-item {{ $key == 0 ? 'active' : '' }}"
-                style="
-                object-fit: cover;
-                width: 900px;
-                height: 450px;
-                background-size: cover;
-                /* background-repeat: no-repeat; */
-                background-position: center;" />
+                <img src="{{ url('/images/University/4.Doctor_Slide.png') }}" class="d-block w-100" alt="...">
+
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ url('/images/University/5.RULE.png') }}" class="d-block w-100" alt="...">
+
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ url('/images/University/6.RUFA_Slide.png') }}" class="d-block w-100" alt="...">
+
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ url('/images/University/7.NU_Slide.png') }}" class="d-block w-100" alt="...">
+
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ url('/images/University/8.PUC_Slide.png') }}" class="d-block w-100" alt="...">
+
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ url('/images/University/9.BB_Slide.png') }}" class="d-block w-100" alt="...">
+
+            </div>
+
+            <div class="carousel-item">
+                <img src="{{ url('/images/University/10.AEU_Slide.png') }}" class="d-block w-100" alt="...">
+
             </div>
 
         </div>
-        @endforeach
+
+
+
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -54,7 +102,6 @@
         </button>
     </div>
 
-    </div>
     {{-- End slide show --}}
 
     {{-- Start Text run --}}
