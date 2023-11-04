@@ -75,7 +75,7 @@
                             <a href="{{ route('type-list') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon far fa-plus-square"></i>
                                 <p>
-                                    &nbsp; Types
+                                    &nbsp; Main Content
                                 </p>
                             </a>
                         </li>
@@ -93,7 +93,7 @@
                             <a href="{{ route('department-list') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-chalkboard"></i>
                                 <p>
-                                    &nbsp; Departments A
+                                    &nbsp; Departments
                                 </p>
                             </a>
                         </li>
@@ -106,7 +106,7 @@
                                 </p>
                             </a>
                         </li>
-
+{{--
                         <li class="nav-item" id="menu_new_youth">
                             <a href="{{ route('newsyouth-list') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-id-card"></i>
@@ -114,25 +114,25 @@
                                     &nbsp; News Youths
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item" id="menu_department_two">
                             <a href="{{ route('web_department.index') }}" class="nav-link" title="Web Department">
                                 &nbsp;<i class="nav-icon fas fa-building"></i>
                                 <p>
-                                    &nbsp; Departments B
+                                    &nbsp; skill choose
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item" id="menu_web_skill">
                             <a href="{{ route('web_skill.index') }}" class="nav-link">
-                                &nbsp;<i class="nav-icon fas fa-lightbulb"></i>  
-                                &nbsp; Skills
+                                &nbsp;<i class="nav-icon fas fa-lightbulb"></i>
+                                &nbsp; Talent
                                 </a>
                         </li>
                         <li class="nav-item" id="menu_contact_message">
                             <a href="{{ route('contact_message.index') }}" class="nav-link">
-                                &nbsp;<i class="nav-icon fas fa-envelope"></i>  
+                                &nbsp;<i class="nav-icon fas fa-envelope"></i>
                                 &nbsp; Contacts
                                 </a>
                         </li>
@@ -270,7 +270,7 @@
                          )
                      }
                  })
-             }); 
+             });
      </script>
      <!-- end sweetalert -->
 </body>

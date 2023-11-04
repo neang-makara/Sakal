@@ -11,35 +11,80 @@
 
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h3 class="text-uppercase mb-4 font-weight-bolder text-light" >
-                    អំពីយើង
+                    សាកលវិទ្យាល័យ
                 </h3>
-                <p style="font-size:18px">
-                    សាកល គឺជាគេហៈទំព័រព័ត៌មានឌីជីថលដែលផ្តល់ជូនព័ត៌មានពីគ្រប់សាកលវិទ្យាល័យទាំងអស់ជូនដល់សិស្សានុសិស្ស។
-                </p>
+                <div style="margin-top: 10px, text-align: center,">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ ភូមិន្ទភ្នំពេញ
+                    </a>
+                </div>
+
+                <div style="margin-top: 10px; text-align: center;">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ ភូមិន្ទកសិកម្ម
+                    </a>
+                </div>
+
+                <div style="margin-top: 10px; text-align: center;">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ ជាតិគ្រប់គ្រង
+                    </a>
+                </div>
+
+                <div style="margin-top: 10px; text-align: center;  ">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ វិទ្យាសាស្ត្រសុខាភិបាល
+                    </a>
+                </div>
+
+                <div style="margin-top: 10px; text-align: center;">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ ភូមិន្ទនីតិសាស្ត្រ និងវិទ្យាសាស្ត្រសេដ្ឋកិច្ច
+                    </a>
+                </div>
+
+                <div style="margin-top: 10px; text-align: center;">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ ភូមិន្ទវិចិត្រសិល្បៈ
+                    </a>
+                </div>
+
+                <div style="margin-top: 10px; text-align: center;">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ ន័រតុន
+                    </a>
+                </div>
+
+                <div style="margin-top: 10px; text-align: center;">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ បញ្ញាសាស្ត្រកម្ពុជា
+                    </a>
+                </div>
+
+                <div style="margin-top: 10px; text-align: center; ">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ បៀលប្រាយ
+                    </a>
+                </div>
+
+                <div style="margin-top: 10px; text-align: center;">
+                    <a href="https://www.rupp.edu.kh/"  target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        សាកលវិទ្យាល័យ​​ អាស៊ីអឺរ៉ុប
+                    </a>
+                </div>
 
             </div>
 
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h3 class="text-uppercase mb-4 font-weight-bold text-light">
-                    បណ្តាញសង្គម
+                    វិទ្យាស្ថាន
                 </h3>
                 <div style="margin: 20px">
-                    <a href="https://t.me/sakkalweb" target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
-                        <img  src="{{ url('/images/telegram.png')}}" alt="Cover Image" width="40px" height="40px">
-                    </a>
-                    <a href="https://www.facebook.com/Sakkal-104118368906640" target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
-                        <img  src="{{ url('/images/Facebook.png')}}" alt="Cover Image" width="40px" height="40px">
-                    </a>
-                    <a href="https://www.youtube.com/channel/UCC6axM_XDG_Y2YIRi-O25pw/featured" target="blank" class="navbar-brand  " href="{{ url('/') }}">
-                        <img src="{{ url('/images/Youtube.png')}}" alt="Cover Image" width="40px" height="40px">
+                    <a href="
+                    http://vanda.edu.kh/en/ › ..." target="blank" class="navbar-brand " href="{{ url('/') }}" style="margin-right:5px;">
+                        វិទ្យាស្ថាន​ វ៉ាន់ដា
                     </a>
                 </div>
-                <p>
-                    <a href="#" class="text-white" style="text-decoration: none">info@sakkal.com</a>
-                </p>
-                <p>
-                    <a href="#" class="text-white" style="text-decoration: none"> 096 3233 769</a>
-                </p>
 
 
 

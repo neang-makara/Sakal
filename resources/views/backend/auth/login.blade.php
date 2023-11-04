@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,7 +17,9 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <b>SAKKAL</b>
+    <a class="navbar-brand  " href="{{ url('/') }}">
+        <img src="{{ url('/images/white_Sakkal.png')}}" alt="Cover Image" width="150px" height="150px">
+      </a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -53,6 +55,10 @@
               <span class="fas fa-lock"></span>
             </div>
           </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <a href="#" style="text-decoration: underline;">forgot your password?</a>
         </div>
         <div class="row">
           <!-- /.col -->

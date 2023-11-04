@@ -10,7 +10,7 @@
       <ul class="navbar-nav mx-auto " style="padding-left: 50px;">
         <a class="navbar-brand  " href="{{ url('/') }}">
           <img src="{{ url('/images/white_Sakkal.png')}}" alt="Cover Image" width="50px" height="50px">
-          </a>
+        </a>
         <li class="nav-item" style="padding-left: 50px; ">
           <a class="fs-4 text-light nav-link {{ request()->is('home') ? 'active' : '' }}" href="{{ url('/home') }} ">ទំព័រដើម</a>
         </li>

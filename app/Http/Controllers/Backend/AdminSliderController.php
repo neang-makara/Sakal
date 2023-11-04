@@ -38,7 +38,7 @@ class AdminSliderController extends Controller
            'created_by' => @auth()->id()
         ]);
 
-        return redirect()->route('slider.index')->with('success', 'Create success!'); 
+        return redirect()->route('slider.index')->with('success', 'Create success!');
    }
 
    public function edit($id){
@@ -61,10 +61,10 @@ class AdminSliderController extends Controller
         if($slider_image){
             @unlink($oldimg);
             $name_gen = hexdec(uniqid()).'.'.$slider_image->getClientOriginalExtension();
-            Image::make($slider_image)->resize(780,433)->save('images/sliders/'.$name_gen);
+            Image::make($slider_image)->resize(1200,700)->save('images/sliders/'.$name_gen);
             $data['image'] = 'images/sliders/'.$name_gen;
             Slider::where('id',$id_update)->update($data);
-            return redirect()->route('slider.index')->with('info', 'Update success with new image!'); 
+            return redirect()->route('slider.index')->with('info', 'Update success with new image!');
 
 
         }else{
@@ -76,12 +76,12 @@ class AdminSliderController extends Controller
 
     public function inactive($id){
         Slider::findOrFail($id)->update(['status' => 0]);
-        return redirect()->back()->with('info', 'Inactive Successfully!');    
+        return redirect()->back()->with('info', 'Inactive Successfully!');
     }
 
     public function active($id){
         Slider::findOrFail($id)->update(['status' => 1]);
-        return redirect()->back()->with('info', 'Active Successfully!');  
+        return redirect()->back()->with('info', 'Active Successfully!');
     }
 
     public function delete($id){
@@ -89,7 +89,7 @@ class AdminSliderController extends Controller
         $slider = Slider::findOrFail($id);
         @unlink($slider->image);
         Slider::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Deleted Successfully!');  
+        return redirect()->back()->with('success', 'Deleted Successfully!');
 
     }
 
