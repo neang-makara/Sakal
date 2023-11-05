@@ -28,7 +28,7 @@
 
 								<div class="form-group">
 									<label for="password">Password
-										<a href="{{route('password.request')}}" class="float-right">
+										<a href="{{route('forgot.password')}}" class="float-right">
 											Forgot Password?
 										</a>
 									</label>

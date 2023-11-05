@@ -1,3 +1,11 @@
+@php
+  if (Session::has('locked')) {
+    $difference = time() - Session::get('locked');
+    if ($difference > 10) {
+        Session::forget(['locked', 'login_attempts']);
+    }
+}
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,14 +30,14 @@
       </a>
   </div>
   <!-- /.login-logo -->
-  <div class="card">
+  <div class="card" style="width: 400px">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible">
             <h6>
-                <i class="icon fas fa-ban"></i> Validation exist!
+                @if(!Session::has('locked'))<i class="icon fas fa-ban"></i> Validation exist! @endif
             </h6>
             @foreach ($errors->all() as $error)
                 <span>{{ $error }}</span>
@@ -58,7 +66,7 @@
         </div>
 
         <div style="margin-bottom: 20px;">
-            <a href="#" style="text-decoration: underline;">forgot your password?</a>
+            <a href="{{ route('forgot.password') }}" style="text-decoration: underline;">forgot your password?</a>
         </div>
         <div class="row">
           <!-- /.col -->

@@ -38,6 +38,13 @@
             </div>
             <div class="col-6">
                 <div class="form-group">
+                    <label for="username">Email</label>
+                    <input type="text" class="form-control" id="email"
+                        placeholder="Enter email" disabled value="{{ $user->email }}">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password"
                         placeholder="Enter password" name="password">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -27,7 +28,9 @@ class AuthController extends Controller
             'username' => 'required',
             'password' => 'required'
         ]);
-
+        if (Session::has('locked')) {
+            return back()->withErrors(['failed' => 'Many logins attempt please wait 10s']);
+        }
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password], false)) {
 
             if (Auth::user()->disabled) {
@@ -42,7 +45,12 @@ class AuthController extends Controller
 
             return redirect()->route('dashboard');
         }
-
+        Session::put('login_attempts', Session::get('login_attempts', 0) + 1);
+        Session::put('error-login', 'login fail');
+        if (Session::get('login_attempts', 0) > 2) {
+            Session::put('locked', time());
+            return back()->withErrors(['failed' => 'Many logins attempt please wait 10s']);
+        }
         return back()->withErrors([
             'failed' => 'Invalid username or password'
         ]);

@@ -22,6 +22,7 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Username</th>
+                <th>Email</th>
                 <th>Active</th>
                 <th>Action</th>
             </tr>
@@ -32,6 +33,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->username }}</td>
+                    <td>{{ $user->email ?? 'N/A' }}</td>
                     <td>
                         <i class="fas fa-{{ $user->disabled ? 'times' : 'check' }}"></i>
                         {{-- @if ($user->disabled)

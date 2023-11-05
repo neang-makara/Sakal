@@ -38,6 +38,13 @@
             </div>
             <div class="col-6">
                 <div class="form-group">
+                    <label for="username">Email</label>
+                    <input required type="text" class="form-control" id="email"
+                        placeholder="Enter email" name="email" value="{{ old('email') }}">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password"
                         placeholder="Enter password" name="password">

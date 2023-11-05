@@ -30,7 +30,7 @@ class UsersController extends Controller
         $request->validate([
             'name' => ['required'],
             'username' => ['required', 'min:6'],
-            //'password' => ['required', 'min:6', 'confirmed'],
+            'email' => 'required|unique:users',
             'password' => [
                 'required',
                 'string',
@@ -52,6 +52,7 @@ class UsersController extends Controller
         $user->name = $request->name;
         $user->username = $request->username;
         $user->password = Hash::make($request->password);
+        $user->email = $request->email;
         $user->save();
 
         return redirect()->route('user-list')->with('success', 'Create success!'); // with function means flash data
@@ -133,6 +134,7 @@ class UsersController extends Controller
         }
 
         $user->name = $request->name;
+        $user->email = $request->email;
         $user->save();
 
         return redirect()->route('user-list')->with('success', 'Update success!');

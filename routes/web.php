@@ -24,6 +24,7 @@ use App\Http\Controllers\Backend\WebDepartmentController;
 use App\Http\Controllers\Frontend\AboutUsController;
 use App\Http\Controllers\Frontend\UniversityDetailController\RuaDetailController;
 use App\Http\Controllers\Backend\AdminContactController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\Frontend\UserContactController;
 
 
@@ -265,4 +266,8 @@ Route::post('/store-message', [HistoryUserController::class, 'submitstore']);
 Route::prefix('user-contact-request')->group(function () {
     Route::post('/index', [UserContactController::class, 'submitstore'])->name('frontend.submit.store');
 });
+Route::get('/forget-password',[ForgotPasswordController::class, 'forgotPassword'])->name('forgot.password');
+Route::post('/forget-password',[ForgotPasswordController::class, 'forgotPasswordPost'])->name('forgot.password.post');
+Route::get('/reset-password/{token}',[ForgotPasswordController::class, 'resetPassword'])->name('reset.password');
+Route::post('/reset-password',[ForgotPasswordController::class, 'resetPasswordPost'])->name('reset.password.post');
 // End  Report
