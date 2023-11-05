@@ -18,7 +18,7 @@
 <div class="login-box">
   <div class="login-logo">
     <a class="navbar-brand  " href="{{ url('/') }}">
-        <img src="{{ url('/images/white_Sakkal.png')}}" alt="Cover Image" width="150px" height="150px">
+        <img src="{{ url('/images/white_Sakkal.png')}}" alt="Cover Image" width="100px" height="100px">
       </a>
   </div>
   <!-- /.login-logo -->

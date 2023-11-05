@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title', 'Type Detail')
+@section('title', 'Mian Content Detail')
 
 @section('content')
     <div class="row">

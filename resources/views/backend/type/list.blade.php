@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title', 'List Types')
+@section('title', 'List Mian Content')
 
 @section('content')
 

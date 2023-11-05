@@ -63,14 +63,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-item"  id="menu_slider">
+                        {{-- <li class="nav-item"  id="menu_slider">
                             <a href="{{ route('slider.index') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon fas fa-sliders-h"></i>
                                 <p>
                                     &nbsp; Sliders
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item" id="menu_type">
                             <a href="{{ route('type-list') }}" class="nav-link">
                                 &nbsp;<i class="nav-icon far fa-plus-square"></i>
